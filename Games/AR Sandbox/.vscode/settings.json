@@ -1,9 +1,0 @@
-{
-  "liveServer.settings.port": 0,
-  "liveServer.settings.https": {
-    "enable": false,
-    "cert": "/Users/Syams/xampp/htdocs/Build/localhost.pem",
-    "key": "/Users/Syams/xampp/htdocs/Build/localhost.key",
-    "passphrase": "sam1234"
-  }
-}

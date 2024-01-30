@@ -1,31 +1,127 @@
+<!-- Zappar WebGL template for Unity 2019 and earlier versions -->
+<!-- NFYNT -->
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | WebGL Test AR</title>
-    <script src="js/lib/aframe.min.js"></script>
-    <script src="js/lib/aframe-ar.js"></script>
-    <script src="Build/UnityLoader.js"></script>
-    <script src="js/app.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>%UNITY_WEB_NAME%</title>
+    <style>
+        html {
+            box-sizing: border-box;
+        }
 
-  </head>
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
 
-  <body style="margin: 0px; overflow: hidden;">
-    <a-scene embedded arjs vr-mode-ui="enabled: false" copycanvas>
-      <div id="unityContainer" style="z-index: 2" ></div>
-      <!-- <a-marker preset="hiro"> <a-box></a-box> </a-marker> -->
-      <!-- <a-marker type="pattern" url="data/markers/pattern-arjs.patt"><a-box></a-box></a-marker> -->
-      <!-- <a-marker type="pattern" url="data/markers/test.patt" markercontroller="name : hiro"></a-marker> -->
+        body {
+            margin: 0;
+            background: #444;
+        }
 
-			<a-marker type="pattern" url="data/markers\100k.patt" markercontroller="name : 100k"></a-marker>
-			<a-marker type="pattern" url="data/markers\100ribu.patt" markercontroller="name : 100ribu"></a-marker>
-			<a-marker type="pattern" url="data/markers\Hiro.patt" markercontroller="name : Hiro"></a-marker>
-			<a-marker type="pattern" url="data/markers\Nutty.patt" markercontroller="name : Nutty"></a-marker>
-			<a-marker type="pattern" url="data/markers\NuttyCardboard.patt" markercontroller="name : NuttyCardboard"></a-marker>
+        html, body {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+        }
 
-      <a-entity camera cameratransform></a-entity>
-    </a-scene>
-  </body>
+        #gameContainer {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            display: block;
+        }
+
+        /* try to handle mobile dialog */
+        canvas+* {
+            z-index: 2;
+        }
+
+        .progress {
+            margin: 1.5em;
+            border: 1px solid white;
+            width: 50vw;
+            display: none;
+        }
+
+        .progress .full {
+            margin: 2px;
+            background: white;
+            height: 1em;
+            transform-origin: top left;
+        }
+
+        #loader {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript" src="https://libs.zappar.com/zappar-cv/2.1.2/zappar-cv.js"></script>
+
+    <div id="gameContainer"></div>
+    <div id="loader">
+        <div class="progress">
+            <div class="full"></div>
+        </div>
+    </div>
+
+    <script src="%UNITY_WEBGL_LOADER_URL%"></script>
+    <script>
+        var db = indexedDB.open("dummy_indexdb", 1); // iOS 14.6 fix; the call to open indexdb hangs forever otherwise
+        window.zappar=ZCV.initialize();
+        const loader = document.querySelector("#loader");
+        var gameInstance; //= UnityLoader.instantiate("gameContainer", "%UNITY_WEBGL_BUILD_URL%", { onProgress: UnityProgress }); 
+
+        window.zappar.permission_request_ui_promise().then(WaitForZCVLoad);
+
+        function WaitForZCVLoad(){            
+            if (zappar.loaded()) { 
+                //loader.style.display = "none";  
+                gameInstance= UnityLoader.instantiate("gameContainer", "%UNITY_WEBGL_BUILD_URL%", { onProgress: UnityProgress }); 
+                return; 
+            }
+            setTimeout(WaitForZCVLoad, 500);
+        }
+
+        function UnityProgress(gameInstance, progress) {
+            if (!gameInstance.Module) {
+                return;
+            }
+            window.uarGameInstance = gameInstance;
+            if (!gameInstance.progress) {
+                const progress = document.querySelector("#loader .progress");
+                progress.style.display = "block";
+                gameInstance.progress = progress.querySelector(".full");
+            }
+            gameInstance.progress.style.transform = `scaleX(${progress})`;
+            if (progress === 1 && !gameInstance.removeTimeout) {
+                gameInstance.removeTimeout = setTimeout(function () {
+                    loader.style.display = "none";
+                }, 0); // optionally set a delay in here.
+            }
+        }
+
+    </script>
+</body>
+
 </html>
