@@ -1,0 +1,16 @@
+{
+"companyName": "Zappar",
+"productName": "Hasan",
+"productVersion": "1.0",
+"dataUrl": "00c44d23b4c680bfd184e1d73414645c.unityweb",
+"wasmCodeUrl": "edce96808d8c0738bc108f67d35718b1.unityweb",
+"wasmFrameworkUrl": "fb73f26416d33724e471e3e4ea5c399e.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.4.17f1"
+}
