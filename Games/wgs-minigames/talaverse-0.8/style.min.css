@@ -1,0 +1,1074 @@
+@import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap);
+
+@font-face {
+    font-family: "Catatan Perjalanan";
+    src: local("CatatanPerjalanan"), url(assets/fonts/catatan-perjalanan.woff2) format("woff2"), url(assets/fonts/catatan-perjalanan.woff) format("woff"), url(assets/fonts/catatan-perjalanan.ttf) format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap
+}
+
+@font-face {
+    font-family: "Bungee";
+    src: url(assets/fonts/Bungee-Regular.ttf);
+}
+
+@font-face {
+    font-family: Syne;
+    src: url(assets/fonts/Syne-Regular.ttf);
+}
+
+:root {
+    --light-red: #EC5652;
+    --red: #D03D2F;
+    --dark-red: #BA2C25;
+    --darker-red: #BB372A;
+    --orange: #FFB715;
+    --light-yellow: #FFDC4A;
+    --dark-yellow: #A58D28;
+    --font-light: #1A1A1A;
+    --font-dark: #FFFFFF;
+    --font-highlight: #D03D2F;
+    --wgs-yellow: #FFD938;
+    --wgs-darkorange: #c44600;
+}
+
+a,
+body,
+button,
+canvas,
+div,
+span {
+    -webkit-transform: translateZ(1px);
+    -moz-transform: translateZ(1px);
+    transform: translateZ(1px);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+body {
+    margin: 0;
+    font-family: "Syne", "Open Sans", sans-serif;
+    background-color: #000
+}
+
+.btn {
+    cursor: pointer
+}
+
+.btn:hover {
+    transform: scale(.97)
+}
+
+.btn:hover:active {
+    filter: grayscale(50%);
+    transform: scale(.94)
+}
+
+.btn:hover:active::after {
+    content: none !important
+}
+
+.sprite {
+    background-image: url(assets/images/sprite.png);
+    background-size: calc(var(--scaleFactor) * var(--spriteImageWidth)) calc(var(--scaleFactor) * var(--spriteImageHeight))
+}
+
+.mute-game {
+    position: absolute;
+    width: calc(var(--scaleFactor) * 90px);
+    height: calc(var(--scaleFactor) * 90px);
+    background-position: calc(var(--scaleFactor) * -1090px) calc(var(--scaleFactor) * -420px);
+    background-color: transparent;
+    border: none;
+    top: 6.5vh;
+    top: calc(var(--canvasHeight, 1vh) * 6.5);
+    z-index: 1;
+}
+
+.muted {
+    background-position: calc(var(--scaleFactor) * -1180px) calc(var(--scaleFactor) * -420px)
+}
+
+#main-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: calc(var(--viewportHeight, 1vh) * 100);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden
+}
+
+#background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(assets/images/background-talaverse.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1
+}
+
+#game-board {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges
+}
+
+#hud {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 0;
+    margin: auto
+}
+
+#game-points {
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    padding: 1.25vh;
+    padding: calc(var(--canvasHeight, 1vh) * 1.25);
+    display: none;
+    justify-content: space-between;
+    top: 3vh;
+    top: calc(var(--canvasHeight, 1vh) * 3);
+}
+
+#game-points .mute-game {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto
+}
+
+#life-point,
+#score, #time-game {
+    font-family: "Bungee", "Open Sans", sans-serif;
+    position: relative;
+    font-size: 5vh;
+    font-size: calc(var(--canvasHeight, 1vh) * 5);
+    color: var(--font-dark);
+    background-color: var(--red);
+    width: 38.5%;
+    border-radius: 2.66vh;
+    border-radius: calc(var(--canvasHeight, 1vh) * 2.66);
+    text-align: center;
+    z-index: 1
+}
+
+#score {
+    background-color: var(--wgs-yellow);
+    color: var(--wgs-darkorange);
+
+}
+
+#life-point {
+    background-color: transparent;
+
+}
+
+#timer-game {
+    position: relative;
+    color: var(--font-dark);
+    text-align: center;
+    will-change: contents;
+    z-index: 1
+}
+
+#life-point::after,
+#score::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    border-radius: 2.1vh;
+    border-radius: calc(var(--canvasHeight, 1vh) * 2.1);
+    border-bottom: .6vh solid var(--dark-red);
+    border-bottom: calc(var(--canvasHeight, 1vh) * .6) solid var(--dark-red);
+    z-index: 2
+}
+
+#score::after {
+    border-bottom: calc(var(--canvasHeight, 1vh) * .6) solid var(--dark-yellow);
+}
+
+#life-point::after {
+    border: calc(var(--canvasHeight, 1vh) * .6) solid white;
+}
+
+#life-point {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column
+}
+
+#life-point .row {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    flex: 1
+}
+
+#life-point .row>div:not(:last-child) {
+    margin-right: .25vh;
+    margin-right: calc(var(--canvasHeight, 1vh) * .25)
+}
+
+.life-point-item {
+    position: relative;
+    width: calc(var(--scaleFactor) * 111px);
+    height: calc(var(--scaleFactor) * 111px);
+    background-position: 0 calc(var(--scaleFactor) * -67px)
+}
+
+.life-point-item::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(assets/images/sprite.png);
+    width: calc(var(--scaleFactor) * 111px);
+    height: calc(var(--scaleFactor) * 111px);
+    background-position: calc(var(--scaleFactor) * -150px) calc(var(--scaleFactor) * -67px);
+    background-size: calc(var(--scaleFactor) * var(--spriteImageWidth)) calc(var(--scaleFactor) * var(--spriteImageHeight))
+}
+
+#life-point .hidden::after {
+    visibility: hidden
+}
+
+#fps {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 1.5rem;
+    color: var(--font-dark);
+    visibility: hidden;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    will-change: contents;
+    z-index: 50
+}
+
+#pause-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 99
+}
+
+#pause-screen>div {
+    text-align: center
+}
+
+#pause-screen .btn,
+#pause-screen button {
+    z-index: 2
+}
+
+#splash-screen {
+    width: 100%;
+    height: 100%;
+    /* background-image: url(assets/images/splash-screen-bg.png);
+    background-repeat: no-repeat;
+    background-size: contain */
+}
+
+#splash-screen>div {
+    position: relative;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: 0 auto
+}
+
+#splash-screen .mute-game {
+    top: 2.5vh;
+    top: calc(var(--canvasHeight, 1vh) * 2.5);
+    right: 1.5vh;
+    right: calc(var(--canvasHeight, 1vh) * 1.5)
+}
+
+#splash-screen .title {
+    position: relative;
+    /* Ensures that ::after positions relative to this element */
+    margin-top: calc(var(--canvasHeight, 1vh) * 12);
+    margin-bottom: calc(var(--canvasHeight, 1vh) * 3);
+    color: var(--font-dark);
+    font-family: "Bungee", "Open Sans", sans-serif;
+    font-size: calc(var(--canvasHeight, 1vh) * 6);
+    padding: calc(var(--canvasHeight, 1vh) * 2);
+    padding-right: calc(var(--canvasHeight, 1vh) * 2);
+    padding-bottom: calc(var(--canvasHeight, 1vh) * 2);
+    text-align: center;
+    text-shadow: -4px 2px darkgreen;
+}
+
+#splash-screen .title::after {
+    content: '';
+    /* Required for pseudo-element to display */
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+#splash-screen .title .highlight {
+    font-family: "Syne", "Open Sans", sans-serif;
+    font-size: 2vh;
+    font-size: calc(var(--canvasHeight, 1vh) * 2);
+    line-height: 1vh;
+    line-height: calc(var(--canvasHeight, 1vh) * 2);
+    background-color: darkgreen;
+    padding: 5px;
+}
+
+#splash-screen .bb {
+    visibility: hidden;
+    margin-left: 5.5vh;
+    margin-left: calc(var(--canvasHeight, 1vh) * 5.5);
+    margin-bottom: 5.5vh;
+    margin-bottom: calc(var(--canvasHeight, 1vh) * 5.5);
+    width: calc(var(--scaleFactor) * 903px);
+    height: calc(var(--scaleFactor) * 788px);
+    background-position: calc(var(--scaleFactor) * -765px) calc(var(--scaleFactor) * -1930px)
+}
+
+#play-game {
+    position: relative;
+    width: 60%;
+    margin-top: .5vh;
+    margin-top: calc(var(--canvasHeight, 1vh) * .5);
+    padding: .75vh 0;
+    padding: calc(var(--canvasHeight, 1vh) * .75) 0;
+    padding-bottom: 1vh;
+    padding-bottom: calc(var(--canvasHeight, 1vh) * 1);
+    font-family: "Bungee", "Open Sans", sans-serif;
+    font-size: 8vh;
+    font-size: calc(var(--canvasHeight, 1vh) * 8);
+    color: var(--font-dark);
+    background-image: linear-gradient(-180deg, #ffd938 6%, #ff5c00 6%, #ff5c00 87%, #C44600 87%);
+    text-align: center;
+    border-radius: 4vh;
+    border-radius: calc(var(--canvasHeight, 1vh) * 4);
+    border: .675vh solid var(--font-light);
+    border: calc(var(--canvasHeight, 1vh) * .675) solid var(--font-light)
+}
+
+#play-game::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    margin: .5vh;
+    margin: calc(var(--canvasHeight, 1vh) * .5);
+    width: 5vh;
+    width: calc(var(--canvasHeight, 1vh) * 5);
+    height: 100%;
+    /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96.469' height='122.729' viewBox='0 0 96.469 122.729'%3E%3Cg id='Group_855' data-name='Group 855' transform='translate(-2329.99 -3738.218)'%3E%3Cg id='Group_853' data-name='Group 853' opacity='0.3'%3E%3Cpath id='Path_967' data-name='Path 967' d='M2419.351 3832.647a7 7 0 0 1-7-7v-23.48a49.335 49.335 0 0 0-11.082-31.109l-2.845-3.485a41.6 41.6 0 0 0-32.354-15.355h-29.08a7 7 0 0 1 0-14h29.08a55.549 55.549 0 0 1 43.2 20.5l2.845 3.485a63.373 63.373 0 0 1 14.236 39.96v23.48A7 7 0 0 1 2419.351 3832.647Z' fill='%23fff'/%3E%3C/g%3E%3Cg id='Group_854' data-name='Group 854' opacity='0.3'%3E%3Crect id='Rectangle_795' data-name='Rectangle 795' width='14.448' height='14.448' rx='7.224' transform='translate(2412.01 3846.499)' fill='%23fff'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); */
+    background-repeat: no-repeat;
+    background-size: 5vh;
+    background-size: calc(var(--canvasHeight, 1vh) * 5)
+}
+
+#play-game::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-bottom: -1px;
+    background-color: transparent;
+    border-radius: 3.5vh;
+    border-radius: calc(var(--canvasHeight, 1vh) * 3.5);
+}
+
+/* #timer-game {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 24px;
+    z-index: 10;
+    padding: 10px;
+  }
+   */
+
+#game-result,
+#how-to-play {
+    display: none
+}
+
+#how-to-play {
+    position: relative;
+    width: 97%;
+    box-sizing: border-box;
+    top: 6vh;
+    top: calc(var(--canvasHeight, 1vh) * 6);
+    color: var(--font-dark);
+    background-color: darkgreen;
+    font-family: "Syne", "Open Sans", sans-serif;
+    font-size: 1.5vh;
+    font-size: calc(var(--canvasHeight, 1vh) * 2.5);
+    line-height: 1.5vh;
+    line-height: calc(var(--canvasHeight, 1vh) * 2.5);
+    margin-top: 2.5vh;
+    margin-top: calc(var(--canvasHeight, 1vh) * 5.5);
+    padding: 2.5vh;
+    padding: calc(var(--canvasHeight, 1vh) * 5.5);
+    text-align: center;
+    border: .75vh solid var(--font-light);
+    border: calc(var(--canvasHeight, 1vh) * .75) solid var(--font-light);
+    border-radius: 5vh;
+    border-radius: calc(var(--canvasHeight, 1vh) * 5);
+}
+
+#how-to-play::after {
+    position: absolute;
+    content: "";
+    top: 2.5vh;
+    top: calc(var(--canvasHeight, 1vh) * 2.5);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    border-radius: 4.25vh;
+    border-radius: calc(var(--canvasHeight, 1vh) * 4.25);
+    border-bottom: 1vh solid darkslategrey;
+    border-bottom: calc(var(--canvasHeight, 1vh) * 1) solid darkslategrey;
+    z-index: 1
+}
+
+#how-to-play .decoration {
+    position: absolute
+}
+
+#how-to-play .blood-bag {
+    top: calc(var(--scaleFactor) * -40px);
+    left: calc(var(--scaleFactor) * -15px);
+    width: calc(var(--scaleFactor) * 145px);
+    height: calc(var(--scaleFactor) * 178px);
+    background-position: calc(var(--scaleFactor) * -300px) 0
+}
+
+#how-to-play .title {
+    width: -moz-fit-content;
+    width: fit-content;
+    font-family: "Bungee", "Open Sans", sans-serif;
+    font-size: 4vh;
+    font-size: calc(var(--canvasHeight, 1vh) * 4);
+    line-height: 4vh;
+    line-height: calc(var(--canvasHeight, 1vh) * 4);
+    margin: 0 auto;
+    padding: .5vh 2vh;
+    padding: calc(var(--canvasHeight, 1vh) * .5) calc(var(--canvasHeight, 1vh) * 2);
+}
+
+#how-to-play .subtitle {
+    width: -moz-fit-content;
+    width: fit-content;
+    font-family: "Bungee", "Open Sans", sans-serif;
+    font-size: 3vh;
+    font-size: calc(var(--canvasHeight, 1vh) * 3);
+    line-height: 4vh;
+    line-height: calc(var(--canvasHeight, 1vh) * 3);
+    margin: calc(var(--canvasHeight, 1vh) * 5) auto;
+    padding: .5vh 7vh;
+    padding: calc(var(--canvasHeight, 1vh) * .5) calc(var(--canvasHeight, 1vh) * 7);
+}
+
+#how-to-play .title:not(:first-child) {
+    margin-top: 3vh;
+    margin-top: calc(var(--canvasHeight, 1vh) * 3);
+    margin-bottom: 3vh;
+    margin-bottom: calc(var(--canvasHeight, 1vh) * 3)
+}
+
+#how-to-play .content {
+    color: var(--font-light);
+    background-color: var(--wgs-yellow);
+    font-size: 2.5vh;
+    font-size: calc(var(--canvasHeight, 1vh) * 2.5);
+    line-height: 4.5vh;
+    line-height: calc(var(--canvasHeight, 1vh) * 2.5);
+    padding: 1vh 2vh;
+    padding: calc(var(--canvasHeight, 1vh) * 1) calc(var(--canvasHeight, 1vh) * 2);
+    border-radius: 1vh;
+    border-radius: calc(var(--canvasHeight, 1vh) * 1)
+}
+
+#how-to-play .legend {
+    margin-left: 1.5vh;
+    margin-left: calc(var(--canvasHeight, 1vh) * 1.5);
+    margin-right: 1.5vh;
+    margin-right: calc(var(--canvasHeight, 1vh) * 1.5)
+}
+
+#how-to-play .column>div:not(:last-child) {
+    margin-bottom: 1.5vh;
+    margin-bottom: calc(var(--canvasHeight, 1vh) * 1.5)
+}
+
+#how-to-play .row {
+    display: flex;
+    flex-direction: row;
+    flex: 1
+}
+
+#how-to-play .row>div:not(:last-child) {
+    margin-right: 1.5vh;
+    margin-right: calc(var(--canvasHeight, 1vh) * 1.5)
+}
+
+#how-to-play .item {
+    box-sizing: border-box;
+    font-size: 3vh;
+    font-size: calc(var(--canvasHeight, 1vh) * 3);
+    font-weight: bold;
+    color: #C44600;
+    line-height: 2.5vh;
+    line-height: calc(var(--canvasHeight, 1vh) * 2.5);
+    height: 16.25vh;
+    height: calc(var(--canvasHeight, 1vh) * 15);
+    padding-top: 2vh;
+    padding-top: calc(var(--canvasHeight, 1vh) * 2);
+    border-radius: 2.5vh;
+    border-radius: calc(var(--canvasHeight, 1vh) * 1.5);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex: 1;
+    flex-direction: row;
+}
+
+#how-to-play .to-collect {
+    width: calc(var(--scaleFactor) * 170px);
+    height: calc(var(--scaleFactor) * 170px);
+    background-image: url(/assets/images/talax.png);
+    /* background-position: calc(var(--scaleFactor) * -1095px) calc(var(--scaleFactor) * -232px) */
+    background-size: calc(var(--scaleFactor) * 170px) calc(var(--scaleFactor) * 170px);
+}
+
+#how-to-play .to-avoid {
+    width: calc(var(--scaleFactor) * 128px);
+    height: calc(var(--scaleFactor) * 160px);
+    background-position: calc(var(--scaleFactor) * -600px) calc(var(--scaleFactor) * -210px)
+}
+
+#how-to-play .to-move {
+    position: relative;
+    background-image: none;
+    -webkit-text-fill-color: white;
+    font-size: 7vh;
+    font-size: calc(var(--canvasHeight, 1vh) * 7);
+    text-align: center;
+    -webkit-text-stroke: .5px #C44600;
+    margin-bottom: 2vh;
+}
+
+#how-to-play .to-move::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    -webkit-text-stroke: 0;
+    pointer-events: none;
+}
+
+#how-to-play>:not(:last-child) {
+    margin-bottom: 1.5vh;
+    margin-bottom: calc(var(--canvasHeight, 1vh) * 1.5)
+}
+
+#start-game {
+    position: relative;
+    width: 60%;
+    margin-top: 1.5vh;
+    margin-top: calc(var(--canvasHeight, 1vh) * 1.5);
+    padding: .75vh 0;
+    padding: calc(var(--canvasHeight, .75vh) * 1) 0;
+    padding-bottom: 1vh;
+    padding-bottom: calc(var(--canvasHeight, 1vh) * 1);
+    font-family: "Bungee", "Open Sans", sans-serif;
+    font-size: 5vh;
+    font-size: calc(var(--canvasHeight, 1vh) * 5);
+    color: var(--font-dark);
+    background-image: linear-gradient(-180deg, #ffd938 6%, #ff5c00 6%, #ff5c00 87%, #C44600 87%);
+    text-align: center;
+    border-radius: 4vh;
+    border-radius: calc(var(--canvasHeight, 1vh) * 4);
+    border: .675vh solid var(--font-light);
+    border: calc(var(--canvasHeight, 1vh) * .675) solid var(--font-light)
+}
+
+#start-game::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    margin: .5vh;
+    margin: calc(var(--canvasHeight, 1vh) * .5);
+    width: 5vh;
+    width: calc(var(--canvasHeight, 1vh) * 5);
+    height: 100%;
+    /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96.469' height='122.729' viewBox='0 0 96.469 122.729'%3E%3Cg id='Group_855' data-name='Group 855' transform='translate(-2329.99 -3738.218)'%3E%3Cg id='Group_853' data-name='Group 853' opacity='0.3'%3E%3Cpath id='Path_967' data-name='Path 967' d='M2419.351 3832.647a7 7 0 0 1-7-7v-23.48a49.335 49.335 0 0 0-11.082-31.109l-2.845-3.485a41.6 41.6 0 0 0-32.354-15.355h-29.08a7 7 0 0 1 0-14h29.08a55.549 55.549 0 0 1 43.2 20.5l2.845 3.485a63.373 63.373 0 0 1 14.236 39.96v23.48A7 7 0 0 1 2419.351 3832.647Z' fill='%23fff'/%3E%3C/g%3E%3Cg id='Group_854' data-name='Group 854' opacity='0.3'%3E%3Crect id='Rectangle_795' data-name='Rectangle 795' width='14.448' height='14.448' rx='7.224' transform='translate(2412.01 3846.499)' fill='%23fff'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); */
+    background-repeat: no-repeat;
+    background-size: 5vh;
+    background-size: calc(var(--canvasHeight, 1vh) * 5)
+}
+
+#start-game::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-bottom: -1px;
+    background-color: transparent;
+    border-radius: 3.5vh;
+    border-radius: calc(var(--canvasHeight, 1vh) * 3.5);
+}
+
+#game-result {
+    width: 97%;
+    height: 85%;
+    box-sizing: border-box;
+    color: var(--font-dark);
+    background-color: #365914;
+    font-family: "Bungee", "Open Sans", sans-serif;
+    font-size: 4vh;
+    font-size: calc(var(--canvasHeight, 1vh) * 4);
+    line-height: 4vh;
+    line-height: calc(var(--canvasHeight, 1vh) * 4);
+    margin-top: 12.5vh;
+    margin-top: calc(var(--canvasHeight, 1vh) * 12.5);
+    padding: 1.5vh;
+    padding: calc(var(--canvasHeight, 1vh) * 3.5);
+    text-align: center;
+    border-radius: 5vh;
+    border-radius: calc(var(--canvasHeight, 1vh) * 5);
+    border: .75vh solid var(--font-light);
+    border: calc(var(--canvasHeight, 1vh) * .75) solid var(--font-light);
+}
+
+#game-result::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    border-radius: 4.25vh;
+    border-radius: calc(var(--canvasHeight, 1vh) * 4.25);
+    border-bottom: 1vh solid darkslategrey;
+    border-bottom: calc(var(--canvasHeight, 1vh) * 1) solid darkslategrey;
+    z-index: 1
+}
+
+#game-result .mute-game {
+    top: 2.5vh;
+    top: calc(var(--canvasHeight, 1vh) * 2.5);
+    right: 1.5vh;
+    right: calc(var(--canvasHeight, 1vh) * 1.5)
+}
+
+#game-result .title {
+    width: -moz-fit-content;
+    width: fit-content;
+    font-size: 5vh;
+    font-size: calc(var(--canvasHeight, 1vh) * 5);
+    line-height: 4vh;
+    line-height: calc(var(--canvasHeight, 1vh) * 4);
+    margin: 0 auto;
+    padding: 1.5vh 3.5vh;
+    padding: calc(var(--canvasHeight, 1vh) * 1.5) calc(var(--canvasHeight, 1vh) * 3.5);
+    border-radius: 3.5vh;
+    border-radius: calc(var(--canvasHeight, 1vh) * 3.5);
+}
+
+#game-result .title:not(:first-child) {
+    margin-top: 3vh;
+    margin-top: calc(var(--canvasHeight, 1vh) * 3);
+    margin-bottom: 3vh;
+    margin-bottom: calc(var(--canvasHeight, 1vh) * 3)
+}
+
+#game-result .coin-logo {
+    width: 100%;
+    height: 20%;
+    background-image: url(assets/images/talax.png);
+    background-size: calc(var(--canvasHeight, 1vh) * 12) calc(var(--canvasHeight, 1vh) * 12);
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: none;
+}
+
+#game-result .content {
+    position: relative;
+    font-family: 'Syne', "Open Sans", sans-serif;
+    color: var(--font-dark);
+    font-size: 2vh;
+    font-size: calc(var(--canvasHeight, 1vh) * 2);
+    line-height: 3.6vh;
+    line-height: calc(var(--canvasHeight, 1vh) * 2);
+    padding: 1vh 2vh;
+    padding: calc(var(--canvasHeight, 1vh) * 1) calc(var(--canvasHeight, 1vh) * 2);
+    margin-top: 1vh;
+    margin-top: calc(var(--canvasHeight, 1vh) * 1);
+    margin-bottom: 1vh !important;
+    margin-bottom: calc(var(--canvasHeight, 1vh) * 1) !important;
+    border-radius: 2.5vh;
+    border-radius: calc(var(--canvasHeight, 1vh) * 2.5);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center
+}
+
+#game-result .content::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: -1.25vh;
+    bottom: calc(var(--canvasHeight, 1vh) * -1.25);
+    background-color: transparent;
+    z-index: 1
+}
+
+#game-result .content>div:not(:last-child) {
+    margin-right: 1.8vh;
+    margin-right: calc(var(--canvasHeight, 1vh) * 1.8)
+}
+
+#game-result .highlight {
+    font-weight: bold;
+}
+
+#game-result .shining-blood-bag {
+    position: relative;
+    /* margin: 0 auto; */
+    margin-top: .8vh;
+    margin-top: calc(var(--canvasHeight, 1vh) * .8);
+    /* margin-bottom: 1.75vh !important;
+    margin-bottom: calc(var(--canvasHeight, 1vh) * 1.75) !important; */
+    width: 100%;
+    height: calc(var(--scaleFactor) * 540px * .3);
+    background-image: none;
+    /* background-position: calc(var(--scaleFactor) * -350px * .5) calc(var(--scaleFactor) * -1930px * .5) */
+}
+
+/* #game-result .shining-blood-bag::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: calc(var(--scaleFactor) * (380px - 688px)/ 2);
+    background-image: url(assets/images/sprite.png);
+    width: calc(var(--scaleFactor) * 688px);
+    height: calc(var(--scaleFactor) * 540px);
+    background-position: 0 calc(var(--scaleFactor) * -2720px);
+    background-size: calc(var(--scaleFactor) * var(--spriteImageWidth)) calc(var(--scaleFactor) * var(--spriteImageHeight));
+    animation: shining-blood-bag-animation 1.25s steps(1, end) infinite
+} */
+
+@keyframes shining-blood-bag-animation {
+    0% {
+        background-position: 0 calc(var(--scaleFactor) * -2720px)
+    }
+
+    25% {
+        background-position: calc(var(--scaleFactor) * -688px) calc(var(--scaleFactor) * -2720px)
+    }
+
+    50% {
+        background-position: calc(var(--scaleFactor) * -1376px) calc(var(--scaleFactor) * -2720px)
+    }
+
+    75% {
+        background-position: calc(var(--scaleFactor) * -2064px) calc(var(--scaleFactor) * -2720px)
+    }
+
+    100% {
+        background-position: calc(var(--scaleFactor) * -2752px) calc(var(--scaleFactor) * -2720px)
+    }
+}
+
+#game-result #final-score {
+    position: absolute;
+    top: 37.5%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--font-dark);
+    font-family: "Bungee", "Open Sans", sans-serif;
+    font-size: 7vh;
+    font-size: calc(var(--canvasHeight, 1vh) * 7)
+}
+
+#game-result #final-score-verbose {
+    font-family: "Syne", "Open Sans", sans-serif;
+    font-size: 2vh;
+    font-size: calc(var(--canvasHeight, 1vh) * 2)
+}
+
+#game-result .speak-bb {
+    margin-bottom: -5vh;
+    margin-bottom: calc(var(--canvasHeight, 1vh) * -5);
+    width: calc(var(--scaleFactor) * 265px);
+    height: calc(var(--scaleFactor) * 330px);
+    background-position: calc(var(--scaleFactor) * -766px) calc(var(--scaleFactor) * -234px);
+    z-index: 2
+}
+
+#game-result>:not(:last-child) {
+    margin-bottom: 1.5vh;
+    margin-bottom: calc(var(--canvasHeight, 1vh) * 1.5)
+}
+
+#game-result .row {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1.25vh;
+    padding-top: calc(var(--canvasHeight, 1vh) * 1.25);
+    margin-bottom: 2.75vh;
+    margin-bottom: calc(var(--canvasHeight, 1vh) * 2.75);
+    z-index: 2
+}
+
+#game-result .row>:not(:last-child) {
+    margin-right: 2.5vh;
+    margin-right: calc(var(--canvasHeight, 1vh) * 2.5)
+}
+
+#game-result .to-share {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 7vh;
+    height: calc(var(--canvasHeight, 1vh) * 7);
+    width: 7vh;
+    width: calc(var(--canvasHeight, 1vh) * 7);
+    padding: 1.25vh;
+    padding: calc(var(--canvasHeight, 1vh) * 1.25);
+    border-radius: 2vh;
+    border-radius: calc(var(--canvasHeight, 1vh) * 2);
+    border: .625vh solid var(--font-light);
+    border: calc(var(--canvasHeight, 1vh) * .625) solid var(--font-light)
+}
+
+#share-facebook {
+    background-color: var(--wgs-yellow);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32.689' height='70.822' viewBox='0 0 32.689 70.822'%3E%3Cpath id='Path_786' data-name='Path 786' d='M3519.611,3642.765h14.261v-35.712h9.949l1.061-11.957h-11.01v-6.81c0-2.819.566-3.933,3.292-3.933h7.718v-12.41h-9.875c-10.611,0-15.4,4.674-15.4,13.619v9.534h-7.418V3607.2h7.418Z' transform='translate(-3512.193 -3571.943)' fill='%23365914' /%3E%3C/svg%3E");
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+#share-whatsapp {
+    background-color: var(--wgs-yellow);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64.267' height='64.281' viewBox='0 0 64.267 64.281'%3E%3Cg id='Group_704' data-name='Group 704' transform='translate(-3691.318 -3575.214)'%3E%3Cpath id='Path_787' data-name='Path 787' d='M3755.57,3605.729a31.557,31.557,0,0,0-63.055-.575c-.014.457-.029.915-.029,1.373A31.079,31.079,0,0,0,3697,3622.7l-5.687,16.794,17.474-5.554a31.591,31.591,0,0,0,46.793-27.414C3755.585,3606.261,3755.585,3606,3755.57,3605.729Zm-31.535,27.119a26.423,26.423,0,0,1-14.593-4.358l-10.191,3.25,3.308-9.778a26.055,26.055,0,0,1-5.052-15.435,24.644,24.644,0,0,1,.133-2.555,26.538,26.538,0,0,1,52.834.5c.059.681.089,1.359.089,2.054A26.454,26.454,0,0,1,3724.035,3632.848Z' fill='%23365914' fill-rule='evenodd'/%3E%3Cpath id='Path_788' data-name='Path 788' d='M3738.5,3612.848c-.783-.383-4.579-2.245-5.288-2.5-.71-.266-1.227-.384-1.743.385s-2.009,2.495-2.452,3-.9.576-1.684.192a20.9,20.9,0,0,1-6.218-3.811,22.966,22.966,0,0,1-4.3-5.3c-.442-.768-.044-1.181.34-1.565.355-.354.769-.9,1.167-1.344.1-.133.192-.251.281-.369a8.579,8.579,0,0,0,.487-.917,1.383,1.383,0,0,0-.059-1.343c-.192-.385-1.743-4.166-2.393-5.7s-1.284-1.27-1.743-1.27c-.443,0-.96-.074-1.477-.074a2.861,2.861,0,0,0-2.068.96,8.6,8.6,0,0,0-2.7,6.41,9.756,9.756,0,0,0,.4,2.615,17.446,17.446,0,0,0,2.762,5.318c.384.5,5.347,8.507,13.205,11.594,7.872,3.058,7.872,2.038,9.291,1.906s4.579-1.847,5.213-3.649a6.331,6.331,0,0,0,.458-3.648C3739.78,3613.425,3739.263,3613.232,3738.5,3612.848Z' fill='%23365914' fill-rule='evenodd'/%3E%3C/g%3E%3C/svg%3E");
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain
+}
+
+#share-telegram {
+    background-color: var(--wgs-yellow);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64.149' height='53.214' viewBox='0 0 64.149 53.214'%3E%3Cg id='Group_708' data-name='Group 708' transform='translate(-3882.105 -3577.267)'%3E%3Cg id='Group_707' data-name='Group 707'%3E%3Cpath id='Path_789' data-name='Path 789' d='M3884.017,3605.83c-2.213-.654-2.655-3.275-.527-4.168l55.773-23.729c4.334-1.857,7.405.443,6.946,3.512q-3.312,22.17-6.625,44.339a5.5,5.5,0,0,1-8.57,3.714l-19.676-13.609a3.461,3.461,0,0,1-.454-5.323l19.061-18.673a.863.863,0,0,0-1.089-1.331l-24.515,16.732a11.846,11.846,0,0,1-10.035,1.576Z' fill='%23365914' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain
+}
+
+#restart-game {
+    position: relative;
+    width: 70%;
+    margin-top: .5vh;
+    margin-top: calc(var(--canvasHeight, 1vh) * .5);
+    padding: 2vh 0;
+    padding: calc(var(--canvasHeight, 1vh) * 2) 0;
+    padding-bottom: 1vh;
+    padding-bottom: calc(var(--canvasHeight, 1vh) * 1);
+    font-family: "Bungee", "Open Sans", sans-serif;
+    font-size: 4vh;
+    font-size: calc(var(--canvasHeight, 1vh) * 4);
+    color: var(--font-dark);
+    background-image: linear-gradient(-180deg, #ffd938 6%, #ff5c00 6%, #ff5c00 87%, #C44600 87%);
+    text-align: center;
+    border-radius: 4vh;
+    border-radius: calc(var(--canvasHeight, 1vh) * 4);
+    border: .675vh solid var(--font-light);
+    border: calc(var(--canvasHeight, 1vh) * .675) solid var(--font-light)
+}
+
+#restart-game::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    margin: .5vh;
+    margin: calc(var(--canvasHeight, 1vh) * .5);
+    width: 5vh;
+    width: calc(var(--canvasHeight, 1vh) * 5);
+    height: 100%;
+    /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96.469' height='122.729' viewBox='0 0 96.469 122.729'%3E%3Cg id='Group_855' data-name='Group 855' transform='translate(-2329.99 -3738.218)'%3E%3Cg id='Group_853' data-name='Group 853' opacity='0.3'%3E%3Cpath id='Path_967' data-name='Path 967' d='M2419.351 3832.647a7 7 0 0 1-7-7v-23.48a49.335 49.335 0 0 0-11.082-31.109l-2.845-3.485a41.6 41.6 0 0 0-32.354-15.355h-29.08a7 7 0 0 1 0-14h29.08a55.549 55.549 0 0 1 43.2 20.5l2.845 3.485a63.373 63.373 0 0 1 14.236 39.96v23.48A7 7 0 0 1 2419.351 3832.647Z' fill='%23fff'/%3E%3C/g%3E%3Cg id='Group_854' data-name='Group 854' opacity='0.3'%3E%3Crect id='Rectangle_795' data-name='Rectangle 795' width='14.448' height='14.448' rx='7.224' transform='translate(2412.01 3846.499)' fill='%23fff'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); */
+    background-repeat: no-repeat;
+    background-size: 5vh;
+    background-size: calc(var(--canvasHeight, 1vh) * 5)
+}
+
+#restart-game::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-bottom: -1px;
+    background-color: transparent;
+    border-radius: 3.5vh;
+    border-radius: calc(var(--canvasHeight, 1vh) * 3.5);
+}
+
+#game-controls {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: none;
+    justify-content: center
+}
+
+#game-controls::after {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 7.1875vh;
+    height: calc(var(--canvasHeight, 1vh) * 7.1875);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1082.595' height='138.312' viewBox='0 0 1082.595 138.312'%3E%3Cpath id='Path_1159' data-name='Path 1159' d='M1579.708,1791.852,1582.3,1920H2660.587l1.716-138.312s-48.284,102.841-331.391,107.857-428.942,2.585-428.942,2.585S1673.181,1895.193,1579.708,1791.852Z' transform='translate(-1579.708 -1781.688)' fill='%23d38509'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: -1
+}
+
+#move-left,
+#move-right {
+    width: calc(var(--scaleFactor) * 324px);
+    height: calc(var(--scaleFactor) * 340px);
+    margin-bottom: 3vh;
+    margin-bottom: calc(var(--canvasHeight, 1vh) * 3)
+}
+
+#move-left {
+    background-position: 0 calc(var(--scaleFactor) * -1933px)
+}
+
+#move-right {
+    background-position: 0 calc(var(--scaleFactor) * -2285px);
+    margin-left: 2vh
+}
+
+@supports (not (-webkit-hyphens:none)) and (not (-moz-appearance:none)) and (list-style-type:"*") {
+    #splash-screen .title {
+        padding-bottom: 3.5vh;
+        padding-bottom: calc(var(--canvasHeight, 1vh) * 3.5)
+    }
+
+    #play-game,
+    #start-game {
+        padding-bottom: 2vh;
+        padding-bottom: calc(var(--canvasHeight, 1vh) * 2);
+        border: .7vh solid var(--font-light);
+        border: calc(var(--canvasHeight, 1vh) * .7) solid var(--font-light)
+    }
+
+    #restart-game,
+    #share-game {
+        padding-bottom: 2.5vh;
+        padding-bottom: calc(var(--canvasHeight, 1vh) * 2.5);
+        border: .7vh solid var(--font-light);
+        border: calc(var(--canvasHeight, 1vh) * .7) solid var(--font-light)
+    }
+
+    #score::before {
+        margin-bottom: .01vh;
+        margin-bottom: calc(var(--canvasHeight, 1vh) * .01)
+    }
+
+    #life-point::before {
+        margin-bottom: .75vh;
+        margin-bottom: calc(var(--canvasHeight, 1vh) * .75)
+    }
+
+    #life-point .row {
+        margin-bottom: 1.5vh;
+        margin-bottom: calc(var(--canvasHeight, 1vh) * 1.5)
+    }
+}
+
+@supports selector(:-moz-is-html) {
+    #splash-screen .title {
+        padding-bottom: 3.5vh;
+        padding-bottom: calc(var(--canvasHeight, 1vh) * 3.5)
+    }
+
+    #play-game,
+    #start-game {
+        padding-bottom: 2vh;
+        padding-bottom: calc(var(--canvasHeight, 1vh) * 2)
+    }
+
+    #restart-game,
+    #share-game {
+        padding-bottom: 2vh;
+        padding-bottom: calc(var(--canvasHeight, 1vh) * 2)
+    }
+
+    #life-point .row {
+        margin-bottom: 1.5vh;
+        margin-bottom: calc(var(--canvasHeight, 1vh) * 1.5)
+    }
+}
+
+@media (hover:none) {
+    .btn {
+        -webkit-tap-highlight-color: transparent
+    }
+}
