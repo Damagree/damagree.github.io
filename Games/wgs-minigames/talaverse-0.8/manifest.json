@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json.schemastore.org/web-manifest",
+  "short_name": "Talaverse",
+  "name": "Talaverse",
+  "description": "Play Talaverse",
+  "scope": "/",
+  "background_color": "#fff",
+  "theme_color": "#c72414",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "prefer_related_applications": true
+}
