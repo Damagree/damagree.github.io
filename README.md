@@ -1,37 +1,45 @@
-## Welcome to My Portofolio
+# 🚀 Aryo Damar Prasetia - Portfolio
 
-You can use the [editor on GitHub](https://github.com/Damagree/damagree.github.io/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+A cyberpunk-styled interactive portfolio using **Anime.js** + **Three.js**.  
+Dynamic data is loaded from JSON to make content easy to update.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+---
 
-### Markdown
+## 📂 Structure
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- `index.html` → Page structure only
+- `styles.css` → Styling & responsive rules
+- `data.json` → Content (hero, about, skills, experience, contact)
+- `ContentHandler.js` → Reads `data.json` and generates DOM
+- `AnimationHandler.js` → Handles all animations & interactivity
+- `README.md` → Documentation
 
-```markdown
-Syntax highlighted code block
+---
 
-# Header 1
-## Header 2
-### Header 3
+## ✨ How It Works
 
-- Bulleted
-- List
+1. **ContentHandler.js** loads `data.json` and injects HTML into sections.
+   - To add skills → add new object in `skills` array.
+   - To add job experience → add object in `experience`.
+   - To add contact link → edit `contact`.
 
-1. Numbered
-2. List
+2. **AnimationHandler.js** uses Anime.js & Three.js.
+   - Handles header/hero animations, scroll-based reveals, floating shapes, profile card tilt, etc.
+   - To add new animations → extend `animateElement()` or add new timeline.
 
-**Bold** and _Italic_ and `Code` text
+3. **styles.css** defines theme variables, responsive rules, and component layouts.
 
-[Link](url) and ![Image](src)
-```
+---
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+## 🛠 Development
 
-### Jekyll Themes
+- Open `index.html` in browser (no server needed).  
+- For JSON fetch to work, use local server (`python3 -m http.server`, `live-server`, or VSCode Live Server).
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Damagree/damagree.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+---
 
-### Support or Contact
+## 📌 Notes
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+- Profile image is set in `data.json`.
+- Glow/3D interactions handled in `AnimationHandler.js`.
+- Modular → change content without touching HTML.

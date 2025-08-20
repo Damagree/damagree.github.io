@@ -1,0 +1,139 @@
+{
+    "hero": {
+        "title": "Aryo Damar Prasetia",
+        "subtitle": "Lead Programmer • Game Developer • Software Engineer • CTO"
+    },
+    "about": {
+        "image": "assets/profile-pic.png",
+        "paragraphs": [
+            "Technology leader and versatile engineer specializing in building interactive platforms, immersive experiences, and scalable systems across games, web, and education technology.",
+            "Currently serving as Chief Technology Officer at Cube Studio, focusing on product innovation, technical direction, and cross-disciplinary collaboration.",
+            "Background in Applied Multimedia Engineering Technology (Telkom University), with strong foundations in software development, interactive media, and creative technologies.",
+            "Experienced in game development, web and mobile applications, cloud platforms, and immersive technologies including VR, AR, and digital twins.",
+            "Also open for private tutoring in general programming and game development with Unity, helping students and professionals strengthen their technical skills."
+        ]
+    },
+    "openForJob": {
+        "enabled": true,
+        "title": "🚀 Available for New Roles & Consulting",
+        "desc": "Open to roles as Lead Programmer, Game Developer, or Software Engineer. Also offering private tutoring in coding and game development. Passionate about interactive media, edtech, robotics, and VR/AR.",
+        "contact": {
+            "link": "mailto:aryo.damar01@gmail.com",
+            "label": "Lets Work Together"
+        }
+    },
+    "skills": [
+        {
+            "icons": [
+                "fas fa-gamepad",
+                "fa-brands fa-unity",
+                "fas fa-vr-cardboard",
+                "fas fa-cubes"
+            ],
+            "title": "Game & Interactive Development",
+            "desc": "Unity & Unreal Engine, C#, gameplay systems, multiplayer frameworks, VR/AR, simulators, and digital twins."
+        },
+        {
+            "icons": [
+                "fas fa-code",
+                "fa-brands fa-react",
+                "fa-brands fa-node",
+                "fas fa-database",
+                "fa-brands fa-android"
+            ],
+            "title": "Full-Stack & Mobile Development",
+            "desc": "React, Next.js, Node.js, Express, PostgreSQL, Android (Kotlin, certified Android Expert), and API integration."
+        },
+        {
+            "icons": [
+                "fas fa-cloud",
+                "fa-brands fa-aws",
+                "fa-brands fa-google",
+                "fas fa-server",
+                "fas fa-network-wired"
+            ],
+            "title": "Cloud & Infrastructure",
+            "desc": "Experience with AWS, Google Cloud Platform, and Huawei Cloud for deploying and scaling applications."
+        },
+        {
+            "icons": [
+                "fas fa-project-diagram",
+                "fas fa-users",
+                "fas fa-chalkboard-teacher",
+                "fas fa-lightbulb",
+                "fas fa-sitemap"
+            ],
+            "title": "Leadership & Teaching",
+            "desc": "Technology strategy, system architecture, mentoring engineers, and teaching fundamentals in algorithms, OOP, and web development."
+        }
+    ],
+    "experience": [
+        {
+            "icon": "fas fa-crown",
+            "title": "Chief Technology Officer (CTO)",
+            "company": "Cube Studio",
+            "desc": "Defined technology strategy, streamlined production pipelines, and delivered interactive multimedia products for enterprise and creative clients."
+        },
+        {
+            "icon": "fas fa-users-cog",
+            "title": "Lead Programmer",
+            "company": "Paradimensi",
+            "desc": "Led architecture design, ensured code quality, mentored developers, and built scalable solutions across metaverse and education platforms."
+        },
+        {
+            "icon": "fas fa-laptop-code",
+            "title": "Software Engineer",
+            "company": "Independent / Projects",
+            "desc": "Delivered cross-platform applications and prototypes, covering games, web platforms, robotics simulators, VR/AR experiences, and Android apps."
+        },
+        {
+            "icon": "fas fa-chalkboard-teacher",
+            "title": "Practicum Assistant",
+            "company": "Telkom University",
+            "desc": "Guided students in algorithms, data structures, object-oriented programming, and web development across multiple semesters."
+        },
+        {
+            "icon": "fas fa-graduation-cap",
+            "title": "C++ Developer Intern",
+            "company": "Gameloft Indonesia",
+            "desc": "Contributed to mobile game development pipelines and strengthened C++ fundamentals in a professional studio environment."
+        }
+    ],
+    "contact": [
+        {
+            "icon": "fab fa-linkedin",
+            "title": "Professional Network",
+            "link": "https://www.linkedin.com/in/aryo-damar-prasetia/",
+            "label": "LinkedIn Profile"
+        },
+        {
+            "icon": "fas fa-envelope",
+            "title": "Email",
+            "link": "mailto:aryo.damar01@gmail.com",
+            "label": "aryo.damar01@gmail.com"
+        },
+        {
+            "icon": "fas fa-map-marker-alt",
+            "title": "Location",
+            "label": "West Java, Indonesia"
+        }
+    ],
+    "games": [
+        {
+            "name": "Capture & Share",
+            "folder": "CaptureAndShare"
+        },
+        {
+            "name": "NPC Civilian",
+            "folder": "npc-civilian"
+        },
+        {
+            "name": "Sandbox",
+            "folder": "Sandbox"
+        },
+        {
+            "name": "Offline Test Web Game",
+            "folder": "offline"
+        }
+    ]
+}
