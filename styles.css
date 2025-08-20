@@ -55,12 +55,30 @@ body {
 
 /* Three.js canvas */
 #webgl-bg {
-  position: fixed;
-  inset: 0;
+  position: absolute;  /* follow page height */
+  top: 0;
+  left: 0;
   z-index: -2;
   width: 100%;
   height: 100%;
+  display: block;
 }
+
+#ui-orbs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1; /* above canvas, below content */
+}
+.ui-orb {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(0,255,231,.18), rgba(255,0,166,.14) 60%, transparent 70%);
+  filter: blur(2px);
+}
+
 
 /* Floating Orbs */
 .floating-orb {
@@ -529,17 +547,25 @@ nav {
   gap: 2rem;
 }
 .contact-card {
-  background: var(--gradient-card);
-  padding: 3rem 2rem;
-  border-radius: 20px;
-  text-align: center;
-  border: 2px solid var(--cyber-accent);
-  box-shadow: var(--glow-cyan);
-  position: relative;
-  transform-style: preserve-3d;
-  opacity: 0;
-  transform: translateY(50px) scale(0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;  /* removes underline if <a> */
+  color: inherit;         /* text keeps theme color */
+  cursor: pointer;
 }
+
+.contact-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 0 16px rgba(0, 255, 231, 0.4);
+}
+
 .contact-icon {
   font-size: 3rem;
   color: var(--cyber-accent);

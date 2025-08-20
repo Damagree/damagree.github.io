@@ -5,19 +5,33 @@ const CONFIG = {
     }
 };
 
-// ===== Three.js reactive grid background =====
+// ===== Enhanced Three.js Reactive Grid Background =====
 (function initThreeBG() {
     const canvas = document.getElementById('webgl-bg');
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
+    scene.fog = new THREE.FogExp2(0x02040a, 0.003); // subtle fog depth
+
+    const camera = new THREE.PerspectiveCamera(
+        60,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        2000
+    );
     camera.position.set(0, 80, 220);
 
-    const grid = new THREE.GridHelper(800, 40, new THREE.Color(0x00ffe7), new THREE.Color(0x00ffe7));
+    // ===== Neon Grid =====
+    const grid = new THREE.GridHelper(
+        800,
+        40,
+        new THREE.Color(0x00ffe7),
+        new THREE.Color(0x00ffe7)
+    );
     grid.material.transparent = true;
     grid.material.opacity = 0.12;
     scene.add(grid);
 
+    // ===== Lights =====
     const glow = new THREE.PointLight(0xff00a6, 3, 600, 2);
     glow.position.set(0, 150, 120);
     scene.add(glow);
@@ -25,15 +39,71 @@ const CONFIG = {
     const ambient = new THREE.AmbientLight(0x404040, 1.2);
     scene.add(ambient);
 
+    const rimLight = new THREE.PointLight(0x00ffe7, 1, 800, 2);
+    rimLight.position.set(-300, 120, -200);
+    scene.add(rimLight);
+
+    // ===== Floating Orbs =====
+    const orbGroup = new THREE.Group();
+    const orbGeo = new THREE.SphereGeometry(6, 32, 32);
+    for (let i = 0; i < 12; i++) {
+        const color = new THREE.Color().setHSL(0.8 + Math.random() * 0.2, 1, 0.6);
+        const mat = new THREE.MeshStandardMaterial({
+            color,
+            emissive: color,
+            emissiveIntensity: 0.9,
+            roughness: 0.3,
+            metalness: 0.2
+        });
+        const orb = new THREE.Mesh(orbGeo, mat);
+        orb.position.set(
+            (Math.random() - 0.5) * 400,
+            40 + Math.random() * 80,
+            -100 - Math.random() * 400
+        );
+        orb.userData = {
+            speed: 0.001 + Math.random() * 0.002,
+            amp: 10 + Math.random() * 20
+        };
+        orbGroup.add(orb);
+    }
+    scene.add(orbGroup);
+
+    // ===== Particle Field =====
+    const particles = new THREE.BufferGeometry();
+    const count = 800;
+    const positions = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * 800;
+        positions[i * 3 + 1] = Math.random() * 200;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 800;
+    }
+    particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const particleMat = new THREE.PointsMaterial({
+        color: 0x00ffe7,
+        size: 1.2,
+        transparent: true,
+        opacity: 0.6,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false
+    });
+    const particleMesh = new THREE.Points(particles, particleMat);
+    scene.add(particleMesh);
+
+    // ===== Resize =====
     function resize() {
-        camera.aspect = window.innerWidth / window.innerHeight;
+        const w = window.innerWidth;
+        const h = document.body.scrollHeight; // full page height
+        camera.aspect = w / window.innerHeight; // keep correct FOV for viewport
         camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight, false);
+        renderer.setSize(w, h, false);
         renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
     }
-    window.addEventListener('resize', resize); resize();
+    window.addEventListener('resize', resize);
+    resize();
 
-    // mouse parallax + glow follow
+
+    // ===== Mouse Parallax + Glow Follow =====
     document.addEventListener('mousemove', (e) => {
         const x = (e.clientX / window.innerWidth) * 2 - 1;
         const y = (e.clientY / window.innerHeight) * 2 - 1;
@@ -43,13 +113,28 @@ const CONFIG = {
         glow.position.z = 120 - y * 120;
     });
 
+    // ===== Animate Loop =====
     (function render() {
+        const t = Date.now() * 0.001;
+
+        // grid gentle rotation
         grid.rotation.x = Math.PI / 2.2;
         grid.rotation.z += 0.0008;
+
+        // orbs floating animation
+        orbGroup.children.forEach((orb, i) => {
+            orb.position.y = 60 + Math.sin(t * 2 * orb.userData.speed + i) * orb.userData.amp;
+            orb.rotation.y += orb.userData.speed * 2;
+        });
+
+        // particles slow drift
+        particleMesh.rotation.y += 0.0002;
+
         renderer.render(scene, camera);
         requestAnimationFrame(render);
     })();
 })();
+
 
 // ===== Header + hero animations =====
 function animateHeader() {
@@ -188,22 +273,48 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+function spawnUIOrbs(n = 6) {
+    const wrap = document.getElementById('ui-orbs');
+    if (!wrap) return;
+    for (let i = 0; i < n; i++) {
+        const el = document.createElement('div');
+        el.className = 'ui-orb';
+        el.style.left = Math.round(Math.random() * 80 + 10) + 'vw';
+        el.style.top = Math.round(Math.random() * 70 + 10) + 'vh';
+        el.style.transform = `translate(-50%,-50%) scale(${(Math.random() * 0.6 + 0.7).toFixed(2)})`;
+        wrap.appendChild(el);
+
+        anime({
+            targets: el,
+            translateX: () => anime.random(-60, 60),
+            translateY: () => anime.random(-40, 40),
+            opacity: [{ value: 0.15, duration: 1200 }, { value: 0.28, duration: 2200 }],
+            duration: 8000 + i * 600,
+            direction: 'alternate',
+            easing: 'easeInOutSine',
+            loop: true,
+            delay: i * 260
+        });
+    }
+}
+
 function initAnimations() {
-  animateHeader();
-  animateHero();
-  initScrollAnimations();
-  // floating orbs etc.
-  document.querySelectorAll('.floating-orb').forEach((orb,i)=>{
-    anime({
-      targets: orb,
-      translateX: ()=> anime.random(-100,100),
-      translateY: ()=> anime.random(-80,80),
-      scale:[.8,1.2,1],
-      opacity:[.08,.25,.12],
-      duration: 8000+(i*1000),
-      easing:'easeInOutSine',
-      loop:true,
-      direction:'alternate'
+    animateHeader();
+    animateHero();
+    initScrollAnimations();
+    //spawnUIOrbs(6);
+    // floating orbs etc.
+    document.querySelectorAll('.floating-orb').forEach((orb, i) => {
+        anime({
+            targets: orb,
+            translateX: () => anime.random(-100, 100),
+            translateY: () => anime.random(-80, 80),
+            scale: [.8, 1.2, 1],
+            opacity: [.08, .25, .12],
+            duration: 8000 + (i * 1000),
+            easing: 'easeInOutSine',
+            loop: true,
+            direction: 'alternate'
+        });
     });
-  });
 }
