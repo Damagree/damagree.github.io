@@ -29,6 +29,22 @@
 </head>
 
 <body>
+    <!-- Scroll Gate Loader -->
+    <div id="loader-gate">
+        <div class="gate-core">
+            <div class="gate-ring ring-1"></div>
+            <div class="gate-ring ring-2"></div>
+            <div class="gate-ring ring-3"></div>
+            <div class="gate-label">
+                <h2>Initializing Gate</h2>
+                <p>Scroll to Enter</p>
+            </div>
+            <div id="particle-burst"></div> <!-- particles injected here -->
+        </div>
+    </div>
+
+
+
     <!-- Background -->
     <canvas id="webgl-bg"></canvas>
     <div class="bg-grid"></div>
@@ -97,6 +113,179 @@
 
     <script src="contentHandler.js" defer></script>
     <script src="animationHandler.js" defer></script>
+
+    <script>
+        (function () {
+            // Lock scroll until gate opens
+            const lockScroll = () => {
+                document.documentElement.style.overscrollBehavior = 'none';
+                document.documentElement.style.height = '100%';
+                document.body.style.height = '100%';
+                document.documentElement.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden';
+            };
+            const unlockScroll = () => {
+                document.documentElement.style.overscrollBehavior = '';
+                document.documentElement.style.height = '';
+                document.body.style.height = '';
+                document.documentElement.style.overflow = '';
+                document.body.style.overflow = '';
+            };
+
+            const gate = document.getElementById('loader-gate');
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            let ready = false;    // page assets & content ready
+            let opened = false;   // gate already opened
+            let touchStartY = null;
+
+            lockScroll();
+
+            // You can dispatch 'content-ready' from contentHandler.js after you’ve populated the DOM.
+            // If you don’t, we’ll still open on 'load' fallback.
+            const waitContent = new Promise(res => {
+                window.addEventListener('content-ready', res, { once: true });
+                // fallback if not dispatched:
+                window.addEventListener('load', res, { once: true });
+            });
+
+            waitContent.then(() => {
+                ready = true;
+                // subtle pulse to indicate it’s ready for interaction
+                if (!prefersReduced) {
+                    anime({
+                        targets: '#loader-gate .gate-title',
+                        opacity: [{ value: 1, duration: 0 }, { value: 0.6, duration: 600 }, { value: 1, duration: 600 }],
+                        easing: 'easeInOutSine',
+                        loop: 1
+                    });
+                }
+            });
+
+            function spawnParticleBurst() {
+                const container = document.getElementById("particle-burst");
+                if (!container) return;
+
+                for (let i = 0; i < 50; i++) {
+                    const particle = document.createElement("div");
+                    particle.className = "burst-particle";
+                    container.appendChild(particle);
+
+                    // random direction
+                    const angle = Math.random() * 2 * Math.PI;
+                    const distance = anime.random(80, 1000);
+
+                    anime({
+                        targets: particle,
+                        translateX: Math.cos(angle) * distance,
+                        translateY: Math.sin(angle) * distance,
+                        scale: [0.5, 4],
+                        opacity: [1, 0],
+                        easing: "easeOutExpo",
+                        duration: anime.random(800, 1500),
+                        complete: () => particle.remove()
+                    });
+                }
+            }
+
+
+            function tryOpenGate(trigger = 'scroll') {
+                if (opened || !ready) return;
+                opened = true;
+
+                const rings = document.querySelectorAll('.gate-ring');
+                const label = document.querySelector('.gate-label');
+                const gate = document.getElementById('loader-gate');
+
+                if (!prefersReduced && window.anime) {
+                    const tl = anime.timeline({ easing: 'easeInOutQuad' });
+
+                    // Charge up
+                    tl.add({
+                        targets: rings,
+                        scale: [1, 10],
+                        borderColor: ['#00ffe7', '#ff00cc'],
+                        duration: 500,
+                        delay: anime.stagger(500)
+                    })
+                        // Particle burst here 🚀
+                        .add({
+                            duration: 50,
+                            complete: spawnParticleBurst
+                        })
+                        // Expand rings outward
+                        .add({
+                            targets: rings,
+                            scale: [100, 15000],
+                            opacity: [0.8, 0],
+                            easing: 'easeOutCubic',
+                            duration: 1000,
+                            delay: anime.stagger(100)
+                        })
+                        // Fade label + gate
+                        .add({
+                            targets: [label, gate],
+                            opacity: [1, 0],
+                            filter: ['blur(0px)', 'blur(12px)'],
+                            duration: 1000,
+                            complete: () => {
+                                gate.remove();
+                                unlockScroll();
+                            }
+                        });
+                } else {
+                    gate.remove();
+                    unlockScroll();
+                }
+            }
+
+
+            // Desktop wheel
+            function onWheel(e) {
+                if (opened) return;
+                e.preventDefault();            // block actual scroll while locked
+                if (ready && e.deltaY > 0) {   // only open on downward scroll
+                    tryOpenGate('wheel');
+                }
+            }
+
+            // Keyboard (space, PgDn, ArrowDown)
+            function onKey(e) {
+                if (opened) return;
+                const keys = [' ', 'Spacebar', 'PageDown', 'ArrowDown'];
+                if (keys.includes(e.key)) {
+                    e.preventDefault();
+                    if (ready) tryOpenGate('key');
+                }
+            }
+
+            // Touch (swipe up)
+            function onTouchStart(e) {
+                touchStartY = e.touches ? e.touches[0].clientY : null;
+            }
+            function onTouchMove(e) {
+                if (opened) return;
+                if (touchStartY == null) return;
+                const dy = (e.touches ? e.touches[0].clientY : 0) - touchStartY;
+                if (dy < -12) { // swipe up
+                    e.preventDefault();
+                    if (ready) tryOpenGate('touch');
+                } else {
+                    e.preventDefault(); // keep page from moving while locked
+                }
+            }
+
+            // Bind while gate is up
+            window.addEventListener('wheel', onWheel, { passive: false });
+            window.addEventListener('keydown', onKey, { passive: false });
+            window.addEventListener('touchstart', onTouchStart, { passive: false });
+            window.addEventListener('touchmove', onTouchMove, { passive: false });
+
+            // Safety: if something blocks readiness too long, allow opening after 6s
+            setTimeout(() => { ready = true; }, 6000);
+        })();
+    </script>
+
 </body>
 
 </html>

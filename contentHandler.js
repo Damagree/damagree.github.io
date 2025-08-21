@@ -182,6 +182,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (typeof initAnimations === "function") {
     initAnimations();
   }
+
+  window.dispatchEvent(new Event('content-ready'));
+
 });
 
 // // tell the loader that content is ready
