@@ -175,6 +175,28 @@ async function loadContent() {
 
 }
 
+function initToggleTheme(){
+  const toggleBtn = document.getElementById("theme-toggle");
+  const root = document.documentElement;
+
+  // Load saved theme from localStorage
+  if (localStorage.getItem("theme") === "light") {
+    root.classList.add("light-theme");
+    toggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+  }
+
+  toggleBtn.addEventListener("click", () => {
+    root.classList.toggle("light-theme");
+    if (root.classList.contains("light-theme")) {
+      localStorage.setItem("theme", "light");
+      toggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+    } else {
+      localStorage.setItem("theme", "dark");
+      toggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+  });
+}
+
 // In ContentHandler.js
 document.addEventListener("DOMContentLoaded", async () => {
   await loadContent();
@@ -182,6 +204,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (typeof initAnimations === "function") {
     initAnimations();
   }
+  
+  //initToggleTheme();
 
   window.dispatchEvent(new Event('content-ready'));
 

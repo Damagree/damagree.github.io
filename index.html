@@ -18,7 +18,8 @@
     <meta property="og:title" content="Aryo D. Prasetia - Web Portfolio" />
     <meta property="og:description"
         content="Official portfolio of Aryo Damar Prasetia, Lead Programmer & CTO. Explore my skills in game development, frontend, backend, android developer, full-stack development, and interactive multimedia projects." />
-    <meta property="og:image" content="https://www.dropbox.com/scl/fi/cpuv1whh1xrntof31phm5/WebPortfolio.PNG?rlkey=nzr744irttji0ox76k5bznbug&st=oiscwwzd&dl=1" />
+    <meta property="og:image"
+        content="https://www.dropbox.com/scl/fi/cpuv1whh1xrntof31phm5/WebPortfolio.PNG?rlkey=nzr744irttji0ox76k5bznbug&st=oiscwwzd&dl=1" />
 
     <!-- X (Twitter) -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -26,7 +27,8 @@
     <meta property="twitter:title" content="Aryo D. Prasetia - Web Portfolio" />
     <meta property="twitter:description"
         content="Official portfolio of Aryo Damar Prasetia, Lead Programmer & CTO. Explore my skills in game development, frontend, backend, android developer, full-stack development, and interactive multimedia projects." />
-    <meta property="twitter:image" content="https://www.dropbox.com/scl/fi/cpuv1whh1xrntof31phm5/WebPortfolio.PNG?rlkey=nzr744irttji0ox76k5bznbug&st=oiscwwzd&dl=1" />
+    <meta property="twitter:image"
+        content="https://www.dropbox.com/scl/fi/cpuv1whh1xrntof31phm5/WebPortfolio.PNG?rlkey=nzr744irttji0ox76k5bznbug&st=oiscwwzd&dl=1" />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://damagree.github.io/" />
@@ -93,6 +95,12 @@
                     <a href="#"><i class="fas fa-gamepad"></i> Web Games ▾</a>
                     <ul class="dropdown-menu" id="games-dropdown"></ul>
                 </li>
+                <!-- <li>
+                    <button id="theme-toggle" aria-label="Toggle Theme">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </li> -->
+
             </ul>
         </nav>
     </header>
@@ -189,7 +197,7 @@
                 const container = document.getElementById("particle-burst");
                 if (!container) return;
 
-                for (let i = 0; i < 50; i++) {
+                for (let i = 0; i < 30; i++) {
                     const particle = document.createElement("div");
                     particle.className = "burst-particle";
                     container.appendChild(particle);

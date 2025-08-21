@@ -17,6 +17,30 @@
   --glow-magenta: 0 0 30px var(--cyber-accent2), 0 0 60px var(--cyber-accent2);
   --glow-yellow: 0 0 30px var(--cyber-accent3), 0 0 60px var(--cyber-accent3);
 }
+
+/* Light Theme */
+:root.light-theme {
+  --cyber-bg: #fafbff;
+  --cyber-card: #ffffff;
+  --cyber-accent: #0066ff;   /* shift to deep blue for visibility */
+  --cyber-accent2: #ff3399;  /* lighter magenta */
+  --cyber-accent3: #ff9900;  /* warmer yellow for contrast */
+  --cyber-white: #0a0a0f;
+  --cyber-gray: #444c63;
+  --cyber-muted: #a0a6b5;
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--cyber-accent) 0%,
+    var(--cyber-accent2) 100%
+  );
+  --gradient-card: linear-gradient(145deg, var(--cyber-card) 0%, #f0f3fa 100%);
+
+  --glow-cyan: 0 0 15px var(--cyber-accent), 0 0 30px var(--cyber-accent);
+  --glow-magenta: 0 0 15px var(--cyber-accent2), 0 0 30px var(--cyber-accent2);
+  --glow-yellow: 0 0 15px var(--cyber-accent3), 0 0 30px var(--cyber-accent3);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -154,8 +178,8 @@ body {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #00ffe7;
-  box-shadow: 0 0 10px #00ffe7, 0 0 20px #ff00cc;
+  background: var(--cyber-accent);
+  box-shadow: 0 0 10px var(--cyber-accent), 0 0 20px var(--cyber-accent2);
   transform: translate(-50%, -50%);
   opacity: 0;
 }
@@ -168,7 +192,7 @@ body {
   z-index: -2;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 50% 50%, #0a0a15, #000);
+  background: radial-gradient(circle at 50% 50%, var(--cyber-card), var(--cyber-bg));
   opacity: 1; /* default visible */
   transition: opacity 1.2s ease;
 }
@@ -256,7 +280,7 @@ nav {
 }
 
 .nav-links a:hover {
-  color: #00ffe7; /* neon accent */
+  color: var(--cyber-accent); /* neon accent */
 }
 
 /* Toggle button (hidden on desktop) */
@@ -280,7 +304,7 @@ nav {
     top: 70px; /* below header */
     right: 0;
     flex-direction: column;
-    background: rgba(0, 0, 0, 0.9);
+    background: var(--cyber-card);
     backdrop-filter: blur(6px);
     width: 220px;
     padding: 1rem;
@@ -309,7 +333,7 @@ nav {
   position: absolute;
   top: 100%;
   left: 0;
-  background: rgba(10, 10, 15, 0.95);
+  background: var(--cyber-card);
   border: 1px solid rgba(0, 255, 231, 0.2);
   border-radius: 10px;
   padding: 0.5rem 0;
@@ -328,7 +352,7 @@ nav {
 
 .dropdown-menu li a:hover {
   background: var(--gradient-primary);
-  color: #fff;
+  color: var(--cyber-white);
 }
 
 .dropdown:hover .dropdown-menu {
@@ -383,7 +407,7 @@ nav {
   align-items: center;
   gap: 10px;
   background: var(--gradient-primary);
-  color: white;
+  color: var(--cyber-white);
   padding: 1rem 2.5rem;
   text-decoration: none;
   border-radius: 50px;
