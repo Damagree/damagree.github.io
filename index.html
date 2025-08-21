@@ -12,15 +12,17 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
     <link rel="manifest" href="assets/site.webmanifest">
 
-    <!-- Anime.js & Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
     <!-- Fonts & Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Preload key font to speed up LCP -->
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        as="style">
     <link
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+
+    <!-- Load only needed FA subset if possible -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css" />
@@ -38,6 +40,10 @@
     <!-- Header -->
     <header>
         <nav>
+            <div class="nav-brand">Web Portfolio</div>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
             <ul class="nav-links">
                 <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
                 <li><a href="#skills"><i class="fas fa-code"></i> Skills</a></li>
@@ -85,8 +91,12 @@
     <section id="contact" class="section"></section>
 
     <!-- Scripts -->
-    <script src="contentHandler.js"></script>
-    <script src="animationHandler.js"></script>
+    <!-- Anime.js & Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+
+    <script src="contentHandler.js" defer></script>
+    <script src="animationHandler.js" defer></script>
 </body>
 
 </html>

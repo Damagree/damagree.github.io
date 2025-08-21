@@ -9,23 +9,68 @@ async function loadContent() {
   const res = await fetch('data.json');
   const data = await res.json();
 
-  // Games Dropdown
-  if (data.games && data.games.length > 0) {
-    const baseUrl = window.location.origin + window.location.pathname.replace(/\/$/, "");
-    const dropdown = document.getElementById("games-dropdown");
-    dropdown.innerHTML = data.games.map(game => `
-      <li>
-        <a href="${baseUrl}/Games/${game.folder}/" target="_blank">
-          ${game.name}
-        </a>
-      </li>
-    `).join("");
+  // Mobile nav toggle
+  const toggle = document.querySelector(".nav-toggle");
+  const navLinks = document.querySelector(".nav-links");
+
+  if (toggle && navLinks) {
+    toggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      navLinks.classList.toggle("active");
+      toggle.querySelector("i").classList.toggle("fa-bars");
+      toggle.querySelector("i").classList.toggle("fa-times");
+
+      // Lock/unlock body scroll when menu is open
+      document.body.style.overflow = navLinks.classList.contains("active") ? "hidden" : "";
+    });
+
+    // Auto-close when clicking only top-level nav links (not dropdown parent)
+    document.querySelectorAll(".nav-links > li:not(.dropdown) > a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+        toggle.querySelector("i").classList.add("fa-bars");
+        toggle.querySelector("i").classList.remove("fa-times");
+        document.body.style.overflow = ""; // restore scroll
+      });
+    });
+
+    // Allow dropdown parent toggle instead of auto-close
+    const dropdown = document.querySelector(".dropdown > a");
+    dropdown.addEventListener("click", (e) => {
+      e.preventDefault(); // prevent page jump
+      const menu = dropdown.nextElementSibling;
+      menu.classList.toggle("show");
+    });
+
+    // Games Dropdown injection
+    if (data.games && data.games.length > 0) {
+      const baseUrl = window.location.origin + window.location.pathname.replace(/\/$/, "");
+      const dropdownMenu = document.getElementById("games-dropdown");
+
+      dropdownMenu.innerHTML = data.games.map(game => `
+        <li>
+          <a href="${baseUrl}/Games/${game.folder}/" target="_blank">${game.name}</a>
+        </li>
+      `).join("");
+
+      // Auto-close menu when clicking a game link
+      dropdownMenu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("active");
+          toggle.querySelector("i").classList.add("fa-bars");
+          toggle.querySelector("i").classList.remove("fa-times");
+          document.body.style.overflow = ""; // restore scroll
+        });
+      });
+    }
+
   }
 
 
   // Hero
   document.getElementById("hero-title").textContent = data.hero.title;
   document.getElementById("hero-subtitle").textContent = data.hero.subtitle;
+
 
   // About
   const aboutSection = document.getElementById("about");
@@ -138,5 +183,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     initAnimations();
   }
 });
+
+// // tell the loader that content is ready
+// window.dispatchEvent(new Event('content-ready'));
+
 
 
