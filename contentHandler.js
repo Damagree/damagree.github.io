@@ -20,24 +20,32 @@ async function loadContent() {
       toggle.querySelector("i").classList.toggle("fa-bars");
       toggle.querySelector("i").classList.toggle("fa-times");
 
-      // Lock/unlock body scroll when menu is open
-      document.body.style.overflow = navLinks.classList.contains("active") ? "hidden" : "";
+      if (navLinks.classList.contains("active")) {
+        // Lock ALL scrolling when menu is open
+        document.documentElement.style.overflow = "hidden";
+        document.body.style.overflow = "hidden";
+      } else {
+        // Allow vertical scroll only (horizontal still blocked by CSS)
+        document.documentElement.style.overflow = "auto"; // reset html
+        document.body.style.overflowX = "hidden";
+      }
     });
 
-    // Auto-close when clicking only top-level nav links (not dropdown parent)
+    // Auto-close when clicking top-level nav links
     document.querySelectorAll(".nav-links > li:not(.dropdown) > a").forEach(link => {
       link.addEventListener("click", () => {
         navLinks.classList.remove("active");
         toggle.querySelector("i").classList.add("fa-bars");
         toggle.querySelector("i").classList.remove("fa-times");
-        document.body.style.overflow = ""; // restore scroll
+        document.documentElement.style.overflow = "auto"; // reset html
+        document.body.style.overflowX = "hidden";
       });
     });
 
-    // Allow dropdown parent toggle instead of auto-close
+    // Dropdown handling
     const dropdown = document.querySelector(".dropdown > a");
     dropdown.addEventListener("click", (e) => {
-      e.preventDefault(); // prevent page jump
+      e.preventDefault();
       const menu = dropdown.nextElementSibling;
       menu.classList.toggle("show");
     });
@@ -48,24 +56,22 @@ async function loadContent() {
       const dropdownMenu = document.getElementById("games-dropdown");
 
       dropdownMenu.innerHTML = data.games.map(game => `
-        <li>
-          <a href="${baseUrl}/Games/${game.folder}/" target="_blank">${game.name}</a>
-        </li>
-      `).join("");
+      <li>
+        <a href="${baseUrl}/Games/${game.folder}/" target="_blank">${game.name}</a>
+      </li>
+    `).join("");
 
-      // Auto-close menu when clicking a game link
       dropdownMenu.querySelectorAll("a").forEach(link => {
         link.addEventListener("click", () => {
           navLinks.classList.remove("active");
           toggle.querySelector("i").classList.add("fa-bars");
           toggle.querySelector("i").classList.remove("fa-times");
-          document.body.style.overflow = ""; // restore scroll
+          document.documentElement.style.overflow = "auto"; // reset html
+          document.body.style.overflowX = "hidden";
         });
       });
     }
-
   }
-
 
   // Hero
   document.getElementById("hero-title").textContent = data.hero.title;
@@ -175,7 +181,7 @@ async function loadContent() {
 
 }
 
-function initToggleTheme(){
+function initToggleTheme() {
   const toggleBtn = document.getElementById("theme-toggle");
   const root = document.documentElement;
 
@@ -204,7 +210,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (typeof initAnimations === "function") {
     initAnimations();
   }
-  
+
   //initToggleTheme();
 
   window.dispatchEvent(new Event('content-ready'));
