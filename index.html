@@ -1,326 +1,897 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html class="dark" lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Aryo D. Prasetia — Systems Architect, XR Engineer, Technical Mentor. Jakarta, IDN."/>
+  <title>Aryo D. Prasetia — Systems Architect</title>
 
-    <!-- Primary Meta Tags -->
-    <title>Aryo D. Prasetia - Web Portfolio</title>
-    <meta name="title" content="Aryo D. Prasetia - Web Portfolio" />
-    <meta name="description"
-        content="Official portfolio of Aryo Damar Prasetia, Lead Programmer & CTO. Explore my skills in game development, frontend, backend, android developer, full-stack development, and interactive multimedia projects." />
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://damagree.github.io/" />
-    <meta property="og:title" content="Aryo D. Prasetia - Web Portfolio" />
-    <meta property="og:site_name" content="Aryo D. Prasetia Portfolio" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:locale:alternate" content="id_ID" />
-    <meta property="og:description"
-        content="Official portfolio of Aryo Damar Prasetia, Lead Programmer & CTO. Explore my skills in game development, frontend, backend, android developer, full-stack development, and interactive multimedia projects." />
-    <meta property="og:image"
-        content="https://www.dropbox.com/scl/fi/cpuv1whh1xrntof31phm5/WebPortfolio.PNG?rlkey=nzr744irttji0ox76k5bznbug&st=oiscwwzd&dl=1" />
-
-    <!-- X (Twitter) -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://damagree.github.io/" />
-    <meta property="twitter:title" content="Aryo D. Prasetia - Web Portfolio" />
-    <meta property="twitter:description"
-        content="Official portfolio of Aryo Damar Prasetia, Lead Programmer & CTO. Explore my skills in game development, frontend, backend, android developer, full-stack development, and interactive multimedia projects." />
-    <meta property="twitter:image"
-        content="https://www.dropbox.com/scl/fi/cpuv1whh1xrntof31phm5/WebPortfolio.PNG?rlkey=nzr744irttji0ox76k5bznbug&st=oiscwwzd&dl=1" />
-
-    <!-- Canonical -->
-    <link rel="canonical" href="https://damagree.github.io/" />
-    <meta name="keywords" content="Game Developer, Software Engineer, Game Programmer, Lead Programmer, CTO, Fullstack Developer, Unity, WebGL, WebGPU, Kotlin, C#, Cube Studio, Metaverse, Android Developer, Portfolio" />
-
-
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
-    <link rel="manifest" href="assets/site.webmanifest" />
-
-    <!-- Fonts & Icons -->
-    <link rel="preload"
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
-        as="style">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css" />
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css"/>
 </head>
-
-
 <body>
-    <!-- Scroll Gate Loader -->
-    <div id="loader-gate">
-        <div class="gate-core">
-            <div class="gate-ring ring-1"></div>
-            <div class="gate-ring ring-2"></div>
-            <div class="gate-ring ring-3"></div>
-            <div class="gate-label">
-                <h2>Initializing Gate</h2>
-                <p>Scroll to Enter</p>
-            </div>
-            <div id="particle-burst"></div> <!-- particles injected here -->
-        </div>
+
+<div class="grid-bg"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="logo-mark">
+      <span class="material-symbols-outlined">grid_view</span>
+    </div>
+    <div>
+      <div class="nav-name">Aryo D. Prasetia</div>
+      <div class="nav-sub">SYS_ARCHITECT // v4.0.2</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#core">01. Core</a></li>
+    <li><a href="#systems">02. Systems</a></li>
+    <li><a href="#process">03. Process</a></li>
+    <li><a href="#protocols">04. Protocols</a></li>
+  </ul>
+  <a class="avail-badge" id="avail-badge" href="#protocols" title="Open to new work">
+    <span class="avail-dot"></span>
+    <span class="avail-text" id="avail-label">Available for Projects</span>
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="core">
+  <div style="font-family:'Space Mono',monospace;font-size:0.55rem;color:rgba(0,245,255,0.45);letter-spacing:0.35em;text-transform:uppercase;text-align:center;margin-bottom:1.25rem;">ARCHITECT · ENGINEER · MENTOR</div>
+  <h1 class="hero-title">I Build the <span class="accent">Structure</span><br/>Behind the <span id="hero-cycling-word" style="color:white;border-bottom:2px solid rgba(0,245,255,0.4);padding-bottom:4px;">Feature</span>.</h1>
+  <p class="hero-sub">From game engine kernels to cloud infrastructure — I design systems first, ship features second, and leave teams that can do both without me.</p>
+
+  <div class="hero-visual" id="hero-visual-wrap">
+    <!-- Canvas network -->
+    <canvas id="core-canvas"></canvas>
+
+    <!-- HUD overlays -->
+    <div class="hud-corner hud-tl">
+      <span class="hud-tag">SYS_CORE</span>
+      <span class="hud-val" id="hud-nodes">NODES: —</span>
+    </div>
+    <div class="hud-corner hud-tr">
+      <span class="hud-tag">UPTIME</span>
+      <span class="hud-val" id="hud-uptime">00:00:00</span>
+    </div>
+    <div class="hud-corner hud-bl">
+      <span class="hud-tag">Location_Node</span>
+      <span class="hud-val">Jakarta, IDN</span>
+    </div>
+    <div class="hud-corner hud-br">
+      <span class="hud-tag">Operational_Mode</span>
+      <span class="hud-val">Engineering Mentor</span>
     </div>
 
+    <!-- Crosshair center label -->
+    <div class="core-hud-center">
+      <div class="crosshair"></div>
+      <div class="core-center-label" id="hud-core-label">CORE_v4</div>
+      <div class="core-center-sub" id="hud-activity">IDLE</div>
+    </div>
 
-
-    <!-- Background -->
-    <canvas id="webgl-bg"></canvas>
-    <div class="bg-grid"></div>
-    <div id="ui-orbs"></div>
-    <div class="floating-orb orb-1"></div>
-    <div class="floating-orb orb-2"></div>
-    <div class="floating-orb orb-3"></div>
-
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="nav-brand">Web Portfolio</div>
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <ul class="nav-links">
-                <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
-                <li><a href="#skills"><i class="fas fa-code"></i> Skills</a></li>
-                <li><a href="#experience"><i class="fas fa-briefcase"></i> Experience</a></li>
-                <li><a href="#open-for-job"><i class="fas fa-rocket"></i> Opportunities</a></li>
-                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-                <li class="dropdown">
-                    <a href="#"><i class="fas fa-gamepad"></i> Web Games ▾</a>
-                    <ul class="dropdown-menu" id="games-dropdown"></ul>
-                </li>
-                <!-- <li>
-                    <button id="theme-toggle" aria-label="Toggle Theme">
-                        <i class="fas fa-sun"></i>
-                    </button>
-                </li> -->
-
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Hero -->
-    <section class="hero">
-        <div class="floating-shapes">
-            <div class="floating-shape shape-triangle"></div>
-            <div class="floating-shape shape-square"></div>
-            <div class="floating-shape shape-circle"></div>
+    <!-- BOOT SEQUENCE OVERLAY -->
+    <div class="boot-overlay" id="boot-overlay">
+      <div class="boot-inner">
+        <div class="boot-logo">CORE_v4.2 // INITIALIZING</div>
+        <div class="boot-log" id="boot-log"></div>
+        <div class="boot-bar-wrap">
+          <div class="boot-bar-track">
+            <div class="boot-bar-fill" id="boot-bar"></div>
+          </div>
+          <div class="boot-bar-pct" id="boot-pct">0%</div>
         </div>
-        <div class="hero-content">
-            <h1 id="hero-title"></h1>
-            <p id="hero-subtitle" class="subtitle"></p>
-            <a href="#contact" class="cta-button">
-                <i class="fas fa-rocket"></i>
-                Let's Connect
-            </a>
+        <div class="boot-status" id="boot-status">LOADING MODULES...</div>
+      </div>
+    </div>
+
+    <!-- LEGEND PANEL -->
+    <div class="legend-panel" id="legend-panel" style="opacity:0;pointer-events:none;">
+      <div class="legend-title">NODE_LEGEND</div>
+      <div class="legend-grid">
+        <div class="legend-domain">
+          <div class="legend-dot" style="background:rgb(180,80,255);box-shadow:0 0 8px rgba(180,80,255,0.8)"></div>
+          <div class="legend-info">
+            <div class="legend-domain-name">XR / ENGINES</div>
+            <div class="legend-nodes">XR · UNITY · UNREAL</div>
+          </div>
         </div>
-    </section>
+        <div class="legend-domain">
+          <div class="legend-dot" style="background:rgb(255,140,30);box-shadow:0 0 8px rgba(255,140,30,0.8)"></div>
+          <div class="legend-info">
+            <div class="legend-domain-name">REAL-TIME SIM</div>
+            <div class="legend-nodes">PHYSX · RT-SIM</div>
+          </div>
+        </div>
+        <div class="legend-domain">
+          <div class="legend-dot" style="background:rgb(60,255,140);box-shadow:0 0 8px rgba(60,255,140,0.8)"></div>
+          <div class="legend-info">
+            <div class="legend-domain-name">BACKEND / CLOUD</div>
+            <div class="legend-nodes">CLOUD · API · DB</div>
+          </div>
+        </div>
+        <div class="legend-domain">
+          <div class="legend-dot" style="background:rgb(0,245,255);box-shadow:0 0 8px rgba(0,245,255,0.8)"></div>
+          <div class="legend-info">
+            <div class="legend-domain-name">WEB / ARCH</div>
+            <div class="legend-nodes">WEB · ARCH</div>
+          </div>
+        </div>
+        <div class="legend-domain">
+          <div class="legend-dot" style="background:rgb(255,210,60);box-shadow:0 0 8px rgba(255,210,60,0.8)"></div>
+          <div class="legend-info">
+            <div class="legend-domain-name">MENTORSHIP</div>
+            <div class="legend-nodes">MENTOR · DEVEX</div>
+          </div>
+        </div>
+      </div>
+      <div class="legend-hint">hover node · click to pulse</div>
+    </div>
+  </div>
 
-    <!-- About -->
-    <section id="about" class="section"></section>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('systems').scrollIntoView({behavior:'smooth'})">Explore Work</button>
+    <button class="btn-outline" onclick="document.getElementById('protocols').scrollIntoView({behavior:'smooth'})">Collaborate</button>
+  </div>
+</section>
 
-    <!-- Open For Job -->
-    <section id="open-for-job" class="section openForJob"></section>
+<!-- QUOTES SECTION -->
+<section class="quotes-section" id="quotes">
+  <div class="quotes-container">
+    <div class="quotes-header">
+      <span class="quotes-log-label">LOG_INITIALIZATION_SEQUENCE</span>
+      <div class="quotes-log-line"></div>
+    </div>
 
-    <!-- Skills -->
-    <section id="skills" class="section"></section>
+    <div class="quotes-grid">
 
-    <!-- Experience -->
-    <section id="experience" class="section experience-section"></section>
+      <!-- QUOTE 1: I design systems before I build features -->
+      <div class="quote-card reveal">
+        <div class="quote-illustration">
+          <svg viewBox="0 0 280 90" preserveAspectRatio="xMidYMid meet">
+            <!-- Blueprint grid dots -->
+            <g opacity="0.15">
+              <circle cx="20" cy="20" r="1" fill="#00f5ff"/>
+              <circle cx="60" cy="20" r="1" fill="#00f5ff"/>
+              <circle cx="100" cy="20" r="1" fill="#00f5ff"/>
+              <circle cx="140" cy="20" r="1" fill="#00f5ff"/>
+              <circle cx="180" cy="20" r="1" fill="#00f5ff"/>
+              <circle cx="220" cy="20" r="1" fill="#00f5ff"/>
+              <circle cx="260" cy="20" r="1" fill="#00f5ff"/>
+              <circle cx="20" cy="50" r="1" fill="#00f5ff"/>
+              <circle cx="60" cy="50" r="1" fill="#00f5ff"/>
+              <circle cx="100" cy="50" r="1" fill="#00f5ff"/>
+              <circle cx="140" cy="50" r="1" fill="#00f5ff"/>
+              <circle cx="180" cy="50" r="1" fill="#00f5ff"/>
+              <circle cx="220" cy="50" r="1" fill="#00f5ff"/>
+              <circle cx="260" cy="50" r="1" fill="#00f5ff"/>
+              <circle cx="20" cy="80" r="1" fill="#00f5ff"/>
+              <circle cx="60" cy="80" r="1" fill="#00f5ff"/>
+              <circle cx="100" cy="80" r="1" fill="#00f5ff"/>
+              <circle cx="140" cy="80" r="1" fill="#00f5ff"/>
+              <circle cx="180" cy="80" r="1" fill="#00f5ff"/>
+              <circle cx="220" cy="80" r="1" fill="#00f5ff"/>
+              <circle cx="260" cy="80" r="1" fill="#00f5ff"/>
+            </g>
+            <!-- System before feature: boxes with connections -->
+            <!-- Main system box -->
+            <rect x="80" y="15" width="120" height="60" fill="none" stroke="#00f5ff" stroke-width="1" opacity="0.6" class="draw-path"/>
+            <rect x="90" y="25" width="100" height="40" fill="rgba(0,245,255,0.05)" stroke="#00f5ff" stroke-width="0.5" opacity="0.4" class="draw-path"/>
+            <!-- Inner modules -->
+            <rect x="96" y="31" width="26" height="14" fill="rgba(0,245,255,0.15)" stroke="#00f5ff" stroke-width="0.5"/>
+            <rect x="128" y="31" width="26" height="14" fill="rgba(0,245,255,0.1)" stroke="#00f5ff" stroke-width="0.5"/>
+            <rect x="160" y="31" width="26" height="14" fill="rgba(0,245,255,0.08)" stroke="#00f5ff" stroke-width="0.5"/>
+            <rect x="96" y="51" width="90" height="8" fill="rgba(0,245,255,0.05)" stroke="#00f5ff" stroke-width="0.5"/>
+            <!-- Corner marks -->
+            <line x1="80" y1="20" x2="86" y2="20" stroke="#00f5ff" stroke-width="1.5"/>
+            <line x1="80" y1="20" x2="80" y2="26" stroke="#00f5ff" stroke-width="1.5"/>
+            <line x1="200" y1="20" x2="194" y2="20" stroke="#00f5ff" stroke-width="1.5"/>
+            <line x1="200" y1="20" x2="200" y2="26" stroke="#00f5ff" stroke-width="1.5"/>
+            <line x1="80" y1="70" x2="86" y2="70" stroke="#00f5ff" stroke-width="1.5"/>
+            <line x1="80" y1="70" x2="80" y2="64" stroke="#00f5ff" stroke-width="1.5"/>
+            <line x1="200" y1="70" x2="194" y2="70" stroke="#00f5ff" stroke-width="1.5"/>
+            <line x1="200" y1="70" x2="200" y2="64" stroke="#00f5ff" stroke-width="1.5"/>
+            <!-- "First" label -->
+            <text x="20" y="45" fill="#00f5ff" font-family="monospace" font-size="5" opacity="0.5" letter-spacing="1">SYSTEM</text>
+            <text x="218" y="45" fill="#00f5ff" font-family="monospace" font-size="5" opacity="0.5" letter-spacing="1">FIRST</text>
+            <!-- Arrow left pointing -->
+            <line x1="18" y1="45" x2="78" y2="45" stroke="#00f5ff" stroke-width="0.5" stroke-dasharray="4 3" opacity="0.3" class="data-flow"/>
+            <polygon points="74,42 80,45 74,48" fill="#00f5ff" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="quote-addr">[0x001]</div>
+        <div class="quote-text">"I design systems before I build features."</div>
+        <div class="quote-bottom"></div>
+      </div>
 
-    <!-- Contact -->
-    <section id="contact" class="section"></section>
+      <!-- QUOTE 2: Architecture defines performance -->
+      <div class="quote-card reveal">
+        <div class="quote-illustration">
+          <svg viewBox="0 0 280 90" preserveAspectRatio="xMidYMid meet">
+            <!-- Structural arch / load diagram -->
+            <!-- Arch shape -->
+            <path d="M 60 75 Q 60 20 140 20 Q 220 20 220 75" fill="none" stroke="#00f5ff" stroke-width="1.5" opacity="0.7" class="draw-path"/>
+            <!-- Load lines from arch top -->
+            <line x1="140" y1="20" x2="140" y2="5" stroke="#00f5ff" stroke-width="1" opacity="0.4"/>
+            <line x1="105" y1="30" x2="95" y2="12" stroke="#00f5ff" stroke-width="0.5" opacity="0.25"/>
+            <line x1="175" y1="30" x2="185" y2="12" stroke="#00f5ff" stroke-width="0.5" opacity="0.25"/>
+            <!-- Force arrows downward on arch -->
+            <polygon points="140,5 136,12 144,12" fill="#00f5ff" opacity="0.5"/>
+            <!-- Base ground line -->
+            <line x1="40" y1="75" x2="240" y2="75" stroke="#00f5ff" stroke-width="1" opacity="0.3"/>
+            <!-- Hatch fill below -->
+            <line x1="50" y1="75" x2="45" y2="82" stroke="#00f5ff" stroke-width="0.5" opacity="0.2"/>
+            <line x1="65" y1="75" x2="60" y2="82" stroke="#00f5ff" stroke-width="0.5" opacity="0.2"/>
+            <line x1="80" y1="75" x2="75" y2="82" stroke="#00f5ff" stroke-width="0.5" opacity="0.2"/>
+            <line x1="180" y1="75" x2="175" y2="82" stroke="#00f5ff" stroke-width="0.5" opacity="0.2"/>
+            <line x1="200" y1="75" x2="195" y2="82" stroke="#00f5ff" stroke-width="0.5" opacity="0.2"/>
+            <line x1="220" y1="75" x2="215" y2="82" stroke="#00f5ff" stroke-width="0.5" opacity="0.2"/>
+            <!-- Performance metric bars -->
+            <rect x="10" y="55" width="6" height="20" fill="#00f5ff" opacity="0.7"/>
+            <rect x="19" y="45" width="6" height="30" fill="#00f5ff" opacity="0.5"/>
+            <rect x="28" y="60" width="6" height="15" fill="#00f5ff" opacity="0.3"/>
+            <!-- Label -->
+            <text x="248" y="50" fill="#00f5ff" font-family="monospace" font-size="4.5" opacity="0.5" letter-spacing="0.5">PERF</text>
+            <text x="248" y="58" fill="#00f5ff" font-family="monospace" font-size="4.5" opacity="0.5" letter-spacing="0.5">HIGH</text>
+            <!-- keystone highlight -->
+            <circle cx="140" cy="20" r="5" fill="rgba(0,245,255,0.2)" stroke="#00f5ff" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="quote-addr">[0x005]</div>
+        <div class="quote-text">"Architecture defines performance in high-stakes environments."</div>
+        <div class="quote-bottom"></div>
+      </div>
 
-    <!-- Scripts -->
-    <!-- Anime.js & Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+      <!-- QUOTE 3: Unity/Unreal to backend platforms -->
+      <div class="quote-card reveal">
+        <div class="quote-illustration">
+          <svg viewBox="0 0 280 90" preserveAspectRatio="xMidYMid meet">
+            <!-- Game Engine icon left -->
+            <rect x="15" y="20" width="50" height="50" fill="none" stroke="#00f5ff" stroke-width="1" opacity="0.5"/>
+            <polygon points="30,30 55,45 30,60" fill="rgba(0,245,255,0.15)" stroke="#00f5ff" stroke-width="0.8"/>
+            <text x="19" y="17" fill="#00f5ff" font-family="monospace" font-size="4" opacity="0.5">ENGINE</text>
+            <!-- Connection arrows -->
+            <line x1="65" y1="45" x2="105" y2="45" stroke="#00f5ff" stroke-width="1" stroke-dasharray="5 3" class="data-flow" opacity="0.6"/>
+            <polygon points="101,42 107,45 101,48" fill="#00f5ff" opacity="0.6"/>
+            <!-- Hub in center -->
+            <circle cx="140" cy="45" r="18" fill="rgba(0,245,255,0.08)" stroke="#00f5ff" stroke-width="1" opacity="0.7"/>
+            <circle cx="140" cy="45" r="10" fill="rgba(0,245,255,0.15)" stroke="#00f5ff" stroke-width="0.5"/>
+            <circle cx="140" cy="45" r="3" fill="#00f5ff" opacity="0.8" class="pulse-node"/>
+            <!-- Right connection -->
+            <line x1="158" y1="45" x2="200" y2="45" stroke="#00f5ff" stroke-width="1" stroke-dasharray="5 3" class="data-flow" opacity="0.6"/>
+            <polygon points="196,42 202,45 196,48" fill="#00f5ff" opacity="0.6"/>
+            <!-- Backend server icon right -->
+            <rect x="203" y="25" width="55" height="12" fill="none" stroke="#00f5ff" stroke-width="0.8" opacity="0.5"/>
+            <rect x="203" y="42" width="55" height="12" fill="none" stroke="#00f5ff" stroke-width="0.8" opacity="0.4"/>
+            <rect x="203" y="59" width="55" height="12" fill="none" stroke="#00f5ff" stroke-width="0.8" opacity="0.3"/>
+            <circle cx="211" cy="31" r="2" fill="#00f5ff" opacity="0.6"/>
+            <circle cx="211" cy="48" r="2" fill="#00f5ff" opacity="0.4"/>
+            <circle cx="211" cy="65" r="2" fill="#00f5ff" opacity="0.2"/>
+            <text x="207" y="78" fill="#00f5ff" font-family="monospace" font-size="4" opacity="0.5">BACKEND</text>
+            <!-- Satellites -->
+            <circle cx="140" cy="13" r="3" fill="rgba(0,245,255,0.3)" stroke="#00f5ff" stroke-width="0.5"/>
+            <line x1="140" y1="16" x2="140" y2="27" stroke="#00f5ff" stroke-width="0.5" opacity="0.3"/>
+            <circle cx="140" cy="77" r="3" fill="rgba(0,245,255,0.3)" stroke="#00f5ff" stroke-width="0.5"/>
+            <line x1="140" y1="74" x2="140" y2="63" stroke="#00f5ff" stroke-width="0.5" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="quote-addr">[0x012]</div>
+        <div class="quote-text">"From Unity and Unreal real-time engines to scalable backend platforms."</div>
+        <div class="quote-bottom"></div>
+      </div>
 
-    <script src="contentHandler.js" defer></script>
-    <script src="animationHandler.js" defer></script>
+      <!-- QUOTE 4: Interactive technology must integrate -->
+      <div class="quote-card reveal">
+        <div class="quote-illustration">
+          <svg viewBox="0 0 280 90" preserveAspectRatio="xMidYMid meet">
+            <!-- Integration web: nodes connected -->
+            <!-- Central node -->
+            <circle cx="140" cy="45" r="10" fill="rgba(0,245,255,0.15)" stroke="#00f5ff" stroke-width="1.5"/>
+            <!-- Outer nodes -->
+            <circle cx="60" cy="20" r="6" fill="rgba(0,245,255,0.1)" stroke="#00f5ff" stroke-width="1" class="pulse-node"/>
+            <circle cx="220" cy="20" r="6" fill="rgba(0,245,255,0.1)" stroke="#00f5ff" stroke-width="1" class="pulse-node-2"/>
+            <circle cx="60" cy="70" r="6" fill="rgba(0,245,255,0.1)" stroke="#00f5ff" stroke-width="1" class="pulse-node-3"/>
+            <circle cx="220" cy="70" r="6" fill="rgba(0,245,255,0.1)" stroke="#00f5ff" stroke-width="1" class="pulse-node"/>
+            <circle cx="20" cy="45" r="5" fill="rgba(0,245,255,0.08)" stroke="#00f5ff" stroke-width="0.8"/>
+            <circle cx="260" cy="45" r="5" fill="rgba(0,245,255,0.08)" stroke="#00f5ff" stroke-width="0.8"/>
+            <!-- Connection lines from center -->
+            <line x1="130" y1="40" x2="66" y2="24" stroke="#00f5ff" stroke-width="0.8" stroke-dasharray="4 3" class="data-flow" opacity="0.6"/>
+            <line x1="150" y1="40" x2="214" y2="24" stroke="#00f5ff" stroke-width="0.8" stroke-dasharray="4 3" class="data-flow" opacity="0.6"/>
+            <line x1="130" y1="50" x2="66" y2="66" stroke="#00f5ff" stroke-width="0.8" stroke-dasharray="4 3" class="data-flow" opacity="0.6"/>
+            <line x1="150" y1="50" x2="214" y2="66" stroke="#00f5ff" stroke-width="0.8" stroke-dasharray="4 3" class="data-flow" opacity="0.6"/>
+            <line x1="130" y1="45" x2="25" y2="45" stroke="#00f5ff" stroke-width="0.8" stroke-dasharray="4 3" class="data-flow" opacity="0.4"/>
+            <line x1="150" y1="45" x2="255" y2="45" stroke="#00f5ff" stroke-width="0.8" stroke-dasharray="4 3" class="data-flow" opacity="0.4"/>
+            <!-- Outer cross-connections -->
+            <line x1="66" y1="26" x2="214" y2="26" stroke="#00f5ff" stroke-width="0.3" opacity="0.15"/>
+            <line x1="66" y1="64" x2="214" y2="64" stroke="#00f5ff" stroke-width="0.3" opacity="0.15"/>
+            <!-- Labels at nodes -->
+            <text x="45" y="13" fill="#00f5ff" font-family="monospace" font-size="4" opacity="0.5">XR</text>
+            <text x="216" y="13" fill="#00f5ff" font-family="monospace" font-size="4" opacity="0.5">API</text>
+            <text x="44" y="85" fill="#00f5ff" font-family="monospace" font-size="4" opacity="0.5">UI</text>
+            <text x="209" y="85" fill="#00f5ff" font-family="monospace" font-size="4" opacity="0.5">DATA</text>
+          </svg>
+        </div>
+        <div class="quote-addr">[0x018]</div>
+        <div class="quote-text">"Interactive technology must integrate — not exist in isolation."</div>
+        <div class="quote-bottom"></div>
+      </div>
 
-    <script>
-        (function () {
-            // Lock scroll until gate opens
-            const lockScroll = () => {
-                document.documentElement.style.overscrollBehavior = 'none';
-                document.documentElement.style.height = '100%';
-                document.body.style.height = '100%';
-                document.documentElement.style.overflow = 'hidden';
-                document.body.style.overflow = 'hidden';
-            };
-            const unlockScroll = () => {
-                document.documentElement.style.overscrollBehavior = '';
-                document.documentElement.style.height = '';
-                document.body.style.height = '';
-                document.documentElement.style.overflow = '';
-                document.body.style.overflow = '';
-            };
+      <!-- QUOTE 5: Clear architecture can be taught -->
+      <div class="quote-card reveal">
+        <div class="quote-illustration">
+          <svg viewBox="0 0 280 90" preserveAspectRatio="xMidYMid meet">
+            <!-- Teaching / architecture diagram: layered pyramid with callout labels -->
+            <!-- Pyramid layers -->
+            <polygon points="140,10 190,78 90,78" fill="none" stroke="#00f5ff" stroke-width="1.2" opacity="0.6" class="draw-path"/>
+            <!-- Inner horizontal lines (layers) -->
+            <line x1="115" y1="44" x2="165" y2="44" stroke="#00f5ff" stroke-width="0.8" opacity="0.5"/>
+            <line x1="103" y1="62" x2="177" y2="62" stroke="#00f5ff" stroke-width="0.8" opacity="0.4"/>
+            <!-- Layer fills -->
+            <polygon points="140,10 165,44 115,44" fill="rgba(0,245,255,0.12)" opacity="0.8"/>
+            <polygon points="115,44 165,44 177,62 103,62" fill="rgba(0,245,255,0.06)"/>
+            <polygon points="103,62 177,62 190,78 90,78" fill="rgba(0,245,255,0.03)"/>
+            <!-- Layer labels right side -->
+            <line x1="165" y1="28" x2="200" y2="28" stroke="#00f5ff" stroke-width="0.5" opacity="0.4"/>
+            <text x="204" y="31" fill="#00f5ff" font-family="monospace" font-size="4.5" opacity="0.6">PRINCIPLES</text>
+            <line x1="165" y1="53" x2="200" y2="53" stroke="#00f5ff" stroke-width="0.5" opacity="0.4"/>
+            <text x="204" y="56" fill="#00f5ff" font-family="monospace" font-size="4.5" opacity="0.5">PATTERNS</text>
+            <line x1="177" y1="70" x2="200" y2="70" stroke="#00f5ff" stroke-width="0.5" opacity="0.4"/>
+            <text x="204" y="73" fill="#00f5ff" font-family="monospace" font-size="4.5" opacity="0.4">PRACTICE</text>
+            <!-- Apex glow -->
+            <circle cx="140" cy="10" r="4" fill="rgba(0,245,255,0.5)" stroke="#00f5ff" stroke-width="1"/>
+            <!-- Checkmark left - "can be explained" -->
+            <polyline points="20,40 28,50 45,25" fill="none" stroke="#00f5ff" stroke-width="1.5" opacity="0.6" class="draw-path"/>
+            <text x="16" y="62" fill="#00f5ff" font-family="monospace" font-size="4" opacity="0.4">CLEAR</text>
+          </svg>
+        </div>
+        <div class="quote-addr">[0x024]</div>
+        <div class="quote-text">"Clear architecture can be explained. Strong systems can be taught."</div>
+        <div class="quote-bottom"></div>
+      </div>
 
-            const gate = document.getElementById('loader-gate');
-            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      <!-- QUOTE 6: I build products, systems, engineers -->
+      <div class="quote-card reveal">
+        <div class="quote-illustration">
+          <svg viewBox="0 0 280 90" preserveAspectRatio="xMidYMid meet">
+            <!-- Three columns: Products, Systems, Engineers -->
+            <!-- Products column -->
+            <rect x="25" y="50" width="50" height="28" fill="rgba(0,245,255,0.12)" stroke="#00f5ff" stroke-width="1" opacity="0.7"/>
+            <rect x="30" y="40" width="40" height="12" fill="rgba(0,245,255,0.08)" stroke="#00f5ff" stroke-width="0.8" opacity="0.6"/>
+            <rect x="38" y="30" width="24" height="12" fill="rgba(0,245,255,0.1)" stroke="#00f5ff" stroke-width="0.8" opacity="0.5"/>
+            <text x="28" y="88" fill="#00f5ff" font-family="monospace" font-size="4.5" opacity="0.5">PRODUCTS</text>
+            <!-- Systems column (taller) -->
+            <rect x="115" y="20" width="50" height="58" fill="rgba(0,245,255,0.15)" stroke="#00f5ff" stroke-width="1.5" opacity="0.8"/>
+            <line x1="115" y1="35" x2="165" y2="35" stroke="#00f5ff" stroke-width="0.5" opacity="0.4"/>
+            <line x1="115" y1="50" x2="165" y2="50" stroke="#00f5ff" stroke-width="0.5" opacity="0.4"/>
+            <line x1="115" y1="65" x2="165" y2="65" stroke="#00f5ff" stroke-width="0.5" opacity="0.4"/>
+            <!-- Inner modules -->
+            <rect x="120" y="23" width="12" height="9" fill="rgba(0,245,255,0.2)" stroke="#00f5ff" stroke-width="0.5"/>
+            <rect x="135" y="23" width="12" height="9" fill="rgba(0,245,255,0.15)" stroke="#00f5ff" stroke-width="0.5"/>
+            <rect x="150" y="23" width="12" height="9" fill="rgba(0,245,255,0.1)" stroke="#00f5ff" stroke-width="0.5"/>
+            <text x="118" y="88" fill="#00f5ff" font-family="monospace" font-size="4.5" opacity="0.5">SYSTEMS</text>
+            <!-- Engineers column (human icons) -->
+            <!-- Person 1 -->
+            <circle cx="225" cy="35" r="7" fill="rgba(0,245,255,0.1)" stroke="#00f5ff" stroke-width="1" opacity="0.7"/>
+            <line x1="225" y1="42" x2="225" y2="60" stroke="#00f5ff" stroke-width="1" opacity="0.6"/>
+            <line x1="215" y1="50" x2="235" y2="50" stroke="#00f5ff" stroke-width="1" opacity="0.5"/>
+            <line x1="225" y1="60" x2="216" y2="76" stroke="#00f5ff" stroke-width="0.8" opacity="0.5"/>
+            <line x1="225" y1="60" x2="234" y2="76" stroke="#00f5ff" stroke-width="0.8" opacity="0.5"/>
+            <text x="208" y="88" fill="#00f5ff" font-family="monospace" font-size="4.5" opacity="0.5">ENGINEERS</text>
+            <!-- Plus signs between columns -->
+            <text x="84" y="49" fill="#00f5ff" font-family="monospace" font-size="12" opacity="0.3">+</text>
+            <text x="178" y="49" fill="#00f5ff" font-family="monospace" font-size="12" opacity="0.3">+</text>
+            <!-- Growth arrow on systems -->
+            <line x1="170" y1="35" x2="170" y2="20" stroke="#00f5ff" stroke-width="1" opacity="0.4"/>
+            <polygon points="167,24 170,18 173,24" fill="#00f5ff" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="quote-addr">[0x032]</div>
+        <div class="quote-text">"I build products. I build systems. I build engineers."</div>
+        <div class="quote-bottom"></div>
+      </div>
 
-            let ready = false;    // page assets & content ready
-            let opened = false;   // gate already opened
-            let touchStartY = null;
+      <!-- QUOTE 7: Excellence compounds when knowledge is shared -->
+      <div class="quote-card reveal">
+        <div class="quote-illustration">
+          <svg viewBox="0 0 280 90" preserveAspectRatio="xMidYMid meet">
+            <!-- Compound growth curve -->
+            <path d="M 20 72 C 60 70 80 65 100 55 S 150 30 180 18 S 220 10 240 8" 
+                  fill="none" stroke="#00f5ff" stroke-width="2" opacity="0.7" class="draw-path"/>
+            <!-- Area under curve -->
+            <path d="M 20 72 C 60 70 80 65 100 55 S 150 30 180 18 S 220 10 240 8 L 240 80 L 20 80 Z" 
+                  fill="rgba(0,245,255,0.05)"/>
+            <!-- Axes -->
+            <line x1="18" y1="78" x2="250" y2="78" stroke="#00f5ff" stroke-width="0.8" opacity="0.3"/>
+            <line x1="18" y1="78" x2="18" y2="5" stroke="#00f5ff" stroke-width="0.8" opacity="0.3"/>
+            <!-- Axis arrow heads -->
+            <polygon points="247,75 253,78 247,81" fill="#00f5ff" opacity="0.3"/>
+            <polygon points="15,8 18,2 21,8" fill="#00f5ff" opacity="0.3"/>
+            <!-- Data points on curve with radiating lines = knowledge shared -->
+            <circle cx="60" cy="69" r="3" fill="#00f5ff" opacity="0.6" class="pulse-node"/>
+            <line x1="60" y1="62" x2="50" y2="55" stroke="#00f5ff" stroke-width="0.5" opacity="0.3"/>
+            <line x1="60" y1="62" x2="70" y2="55" stroke="#00f5ff" stroke-width="0.5" opacity="0.3"/>
+            <circle cx="110" cy="53" r="3" fill="#00f5ff" opacity="0.7" class="pulse-node-2"/>
+            <line x1="110" y1="46" x2="95" y2="38" stroke="#00f5ff" stroke-width="0.5" opacity="0.3"/>
+            <line x1="110" y1="46" x2="125" y2="38" stroke="#00f5ff" stroke-width="0.5" opacity="0.3"/>
+            <line x1="110" y1="46" x2="110" y2="35" stroke="#00f5ff" stroke-width="0.5" opacity="0.3"/>
+            <circle cx="175" cy="20" r="3" fill="#00f5ff" opacity="0.8" class="pulse-node-3"/>
+            <line x1="175" y1="13" x2="165" y2="6" stroke="#00f5ff" stroke-width="0.5" opacity="0.3"/>
+            <line x1="175" y1="13" x2="175" y2="5" stroke="#00f5ff" stroke-width="0.5" opacity="0.3"/>
+            <line x1="175" y1="13" x2="185" y2="6" stroke="#00f5ff" stroke-width="0.5" opacity="0.3"/>
+            <!-- Labels -->
+            <text x="22" y="87" fill="#00f5ff" font-family="monospace" font-size="4" opacity="0.4">TIME</text>
+            <text x="22" y="15" fill="#00f5ff" font-family="monospace" font-size="4" opacity="0.4" writing-mode="tb" glyph-orientation-vertical="90">EXC</text>
+            <!-- "knowledge shared" annotation -->
+            <text x="190" y="25" fill="#00f5ff" font-family="monospace" font-size="4" opacity="0.5">KNOWLEDGE</text>
+            <text x="190" y="32" fill="#00f5ff" font-family="monospace" font-size="4" opacity="0.5">SHARED</text>
+          </svg>
+        </div>
+        <div class="quote-addr">[0x040]</div>
+        <div class="quote-text">"Engineering excellence compounds when knowledge is shared."</div>
+        <div class="quote-bottom"></div>
+      </div>
 
-            lockScroll();
+      <!-- AWAITING INPUT -->
+      <div class="quote-card awaiting reveal">
+        <div style="font-family:'Space Mono',monospace;font-size:0.55rem;color:rgba(0,245,255,0.4);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.5rem;">AWAITING_INPUT</div>
+        <div class="awaiting-cursor">_</div>
+      </div>
 
-            // You can dispatch 'content-ready' from contentHandler.js after you’ve populated the DOM.
-            // If you don’t, we’ll still open on 'load' fallback.
-            const waitContent = new Promise(res => {
-                window.addEventListener('content-ready', res, { once: true });
-                // fallback if not dispatched:
-                window.addEventListener('load', res, { once: true });
-            });
+    </div>
+  </div>
+</section>
 
-            waitContent.then(() => {
-                ready = true;
-                // subtle pulse to indicate it’s ready for interaction
-                if (!prefersReduced) {
-                    anime({
-                        targets: '#loader-gate .gate-title',
-                        opacity: [{ value: 1, duration: 0 }, { value: 0.6, duration: 600 }, { value: 1, duration: 600 }],
-                        easing: 'easeInOutSine',
-                        loop: 1
-                    });
-                }
-            });
+<!-- BUILD PROCESS SECTION -->
+<section class="process-section" id="process">
+  <div class="process-container">
 
-            function spawnParticleBurst() {
-                const container = document.getElementById("particle-burst");
-                if (!container) return;
+    <div class="section-label reveal">
+      <div class="line"></div>
+      <span>How I Build</span>
+    </div>
+    <h2 class="section-title reveal">From Idea to <span style="color:var(--cyan)">System</span></h2>
 
-                for (let i = 0; i < 30; i++) {
-                    const particle = document.createElement("div");
-                    particle.className = "burst-particle";
-                    container.appendChild(particle);
+    <!-- Mode toggle -->
+    <div class="process-mode-toggle reveal">
+      <button class="mode-btn active" data-mode="structured">Structured Build</button>
+      <button class="mode-btn rapid" data-mode="rapid">Rapid Prototype</button>
+    </div>
 
-                    // random direction
-                    const angle = Math.random() * 2 * Math.PI;
-                    const distance = anime.random(80, 1000);
+    <!-- STRUCTURED MODE -->
+    <div class="mode-panel active" id="panel-structured">
+      <div class="service-list">
 
-                    anime({
-                        targets: particle,
-                        translateX: Math.cos(angle) * distance,
-                        translateY: Math.sin(angle) * distance,
-                        scale: [0.5, 4],
-                        opacity: [1, 0],
-                        easing: "easeOutExpo",
-                        duration: anime.random(800, 1500),
-                        complete: () => particle.remove()
-                    });
-                }
-            }
+        <!-- XR Systems -->
+        <div class="service-item reveal" data-service>
+          <div class="service-header">
+            <span class="service-num">XR_01</span>
+            <div class="service-icon-sm"><span class="material-symbols-outlined" style="color:rgb(180,80,255)">view_in_ar</span></div>
+            <div class="service-head-title">XR Systems Engineering</div>
+            <div class="service-chevron">▾</div>
+          </div>
+          <div class="service-body">
+            <div class="service-body-inner">
+              <div class="process-col">
+                <div class="process-col-title">Build Steps</div>
+                <div class="process-steps">
+                  <div class="process-step"><span class="step-idx">01</span><span class="step-text">Define interaction model & spatial constraints before touching engine</span></div>
+                  <div class="process-step"><span class="step-idx">02</span><span class="step-text">Prototype core loop in Unity/Unreal — isolate performance bottlenecks early</span></div>
+                  <div class="process-step"><span class="step-idx">03</span><span class="step-text">Build modular scene architecture — swappable assets, scalable logic</span></div>
+                  <div class="process-step"><span class="step-idx">04</span><span class="step-text">Optimize render pipeline, draw calls, LOD strategy per target platform</span></div>
+                  <div class="process-step"><span class="step-idx">05</span><span class="step-text">Integration testing across headsets — latency, comfort, fidelity balance</span></div>
+                </div>
+              </div>
+              <div class="process-col">
+                <div class="process-col-title">What You Get</div>
+                <div class="process-steps">
+                  <div class="process-step"><span class="step-idx">→</span><span class="step-text">Production-ready XR app with documented architecture</span></div>
+                  <div class="process-step"><span class="step-idx">→</span><span class="step-text">Performance budget defined and respected</span></div>
+                  <div class="process-step"><span class="step-idx">→</span><span class="step-text">Team that understands the codebase and can extend it</span></div>
+                </div>
+                <div class="rapid-tags" style="margin-top:1rem;">
+                  <span class="rapid-tag" style="border-color:rgba(180,80,255,0.3);color:rgb(200,130,255)">Unity</span>
+                  <span class="rapid-tag" style="border-color:rgba(180,80,255,0.3);color:rgb(200,130,255)">Unreal</span>
+                  <span class="rapid-tag" style="border-color:rgba(180,80,255,0.3);color:rgb(200,130,255)">OpenXR</span>
+                  <span class="rapid-tag" style="border-color:rgba(180,80,255,0.3);color:rgb(200,130,255)">WebXR</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <!-- Real-time Simulation -->
+        <div class="service-item reveal" data-service>
+          <div class="service-header">
+            <span class="service-num">RT_02</span>
+            <div class="service-icon-sm"><span class="material-symbols-outlined" style="color:rgb(255,160,40)">precision_manufacturing</span></div>
+            <div class="service-head-title">Real-time Simulation</div>
+            <div class="service-chevron">▾</div>
+          </div>
+          <div class="service-body">
+            <div class="service-body-inner">
+              <div class="process-col">
+                <div class="process-col-title">Build Steps</div>
+                <div class="process-steps">
+                  <div class="process-step"><span class="step-idx">01</span><span class="step-text">Define simulation fidelity requirements — what must be real, what can be approximate</span></div>
+                  <div class="process-step"><span class="step-idx">02</span><span class="step-text">Set up physics layer — PhysX, custom solvers, or hybrid approach</span></div>
+                  <div class="process-step"><span class="step-idx">03</span><span class="step-text">Build lighting model — baked vs real-time tradeoffs per use case</span></div>
+                  <div class="process-step"><span class="step-idx">04</span><span class="step-text">Instrument telemetry: frame time, simulation tick, render budget</span></div>
+                  <div class="process-step"><span class="step-idx">05</span><span class="step-text">Stress test with edge conditions — not just happy path</span></div>
+                </div>
+              </div>
+              <div class="process-col">
+                <div class="process-col-title">What You Get</div>
+                <div class="process-steps">
+                  <div class="process-step"><span class="step-idx">→</span><span class="step-text">Stable real-time environment with defined performance floor</span></div>
+                  <div class="process-step"><span class="step-idx">→</span><span class="step-text">Physics accuracy matched to your actual requirements — no over-engineering</span></div>
+                  <div class="process-step"><span class="step-idx">→</span><span class="step-text">Robotics/industrial simulation ready to connect to external systems</span></div>
+                </div>
+                <div class="rapid-tags" style="margin-top:1rem;">
+                  <span class="rapid-tag" style="border-color:rgba(255,140,30,0.3);color:rgb(255,180,80)">PhysX</span>
+                  <span class="rapid-tag" style="border-color:rgba(255,140,30,0.3);color:rgb(255,180,80)">ROS2</span>
+                  <span class="rapid-tag" style="border-color:rgba(255,140,30,0.3);color:rgb(255,180,80)">Shader Graph</span>
+                  <span class="rapid-tag" style="border-color:rgba(255,140,30,0.3);color:rgb(255,180,80)">HDRP</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-            function tryOpenGate(trigger = 'scroll') {
-                if (opened || !ready) return;
-                opened = true;
+        <!-- Scalable Backend -->
+        <div class="service-item reveal" data-service>
+          <div class="service-header">
+            <span class="service-num">BE_03</span>
+            <div class="service-icon-sm"><span class="material-symbols-outlined" style="color:rgb(60,255,140)">database</span></div>
+            <div class="service-head-title">Scalable Backend Systems</div>
+            <div class="service-chevron">▾</div>
+          </div>
+          <div class="service-body">
+            <div class="service-body-inner">
+              <div class="process-col">
+                <div class="process-col-title">Build Steps</div>
+                <div class="process-steps">
+                  <div class="process-step"><span class="step-idx">01</span><span class="step-text">Map data flow first — where does it originate, how does it move, what reads it</span></div>
+                  <div class="process-step"><span class="step-idx">02</span><span class="step-text">Define service boundaries — avoid premature microservices, avoid monolith traps</span></div>
+                  <div class="process-step"><span class="step-idx">03</span><span class="step-text">Design API contracts before implementation — schema-first development</span></div>
+                  <div class="process-step"><span class="step-idx">04</span><span class="step-text">Build observability in from day one — logs, metrics, traces</span></div>
+                  <div class="process-step"><span class="step-idx">05</span><span class="step-text">Load test before production — not after something breaks</span></div>
+                </div>
+              </div>
+              <div class="process-col">
+                <div class="process-col-title">What You Get</div>
+                <div class="process-steps">
+                  <div class="process-step"><span class="step-idx">→</span><span class="step-text">System that handles growth without emergency rewrites</span></div>
+                  <div class="process-step"><span class="step-idx">→</span><span class="step-text">Infrastructure that your team can maintain and understand</span></div>
+                  <div class="process-step"><span class="step-idx">→</span><span class="step-text">Documented architecture decisions — not just code</span></div>
+                </div>
+                <div class="rapid-tags" style="margin-top:1rem;">
+                  <span class="rapid-tag" style="border-color:rgba(60,255,140,0.3);color:rgb(100,255,170)">Node.js</span>
+                  <span class="rapid-tag" style="border-color:rgba(60,255,140,0.3);color:rgb(100,255,170)">Go</span>
+                  <span class="rapid-tag" style="border-color:rgba(60,255,140,0.3);color:rgb(100,255,170)">PostgreSQL</span>
+                  <span class="rapid-tag" style="border-color:rgba(60,255,140,0.3);color:rgb(100,255,170)">AWS/GCP</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                const rings = document.querySelectorAll('.gate-ring');
-                const label = document.querySelector('.gate-label');
-                const gate = document.getElementById('loader-gate');
+        <!-- Web & Design Systems -->
+        <div class="service-item reveal" data-service>
+          <div class="service-header">
+            <span class="service-num">WB_04</span>
+            <div class="service-icon-sm"><span class="material-symbols-outlined" style="color:rgb(0,245,255)">web</span></div>
+            <div class="service-head-title">Web Platforms & Clean Architecture</div>
+            <div class="service-chevron">▾</div>
+          </div>
+          <div class="service-body">
+            <div class="service-body-inner">
+              <div class="process-col">
+                <div class="process-col-title">Build Steps</div>
+                <div class="process-steps">
+                  <div class="process-step"><span class="step-idx">01</span><span class="step-text">Establish design system before writing component code</span></div>
+                  <div class="process-step"><span class="step-idx">02</span><span class="step-text">Define state model — predictable data flow reduces entire classes of bugs</span></div>
+                  <div class="process-step"><span class="step-idx">03</span><span class="step-text">Architect for change — every feature will be modified; build for that</span></div>
+                  <div class="process-step"><span class="step-idx">04</span><span class="step-text">Integrate cloud services with abstraction layers — avoid lock-in</span></div>
+                </div>
+              </div>
+              <div class="process-col">
+                <div class="process-col-title">What You Get</div>
+                <div class="process-steps">
+                  <div class="process-step"><span class="step-idx">→</span><span class="step-text">Platform that doesn't slow down as it grows</span></div>
+                  <div class="process-step"><span class="step-idx">→</span><span class="step-text">UI that's consistent without being rigid</span></div>
+                  <div class="process-step"><span class="step-idx">→</span><span class="step-text">Clean separation of concerns that new devs can navigate</span></div>
+                </div>
+                <div class="rapid-tags" style="margin-top:1rem;">
+                  <span class="rapid-tag">React</span>
+                  <span class="rapid-tag">Next.js</span>
+                  <span class="rapid-tag">TypeScript</span>
+                  <span class="rapid-tag">Vercel</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                if (!prefersReduced && window.anime) {
-                    const tl = anime.timeline({ easing: 'easeInOutQuad' });
+        <!-- Mentorship -->
+        <div class="service-item reveal" data-service>
+          <div class="service-header">
+            <span class="service-num">MN_05</span>
+            <div class="service-icon-sm"><span class="material-symbols-outlined" style="color:rgb(255,210,60)">school</span></div>
+            <div class="service-head-title">Technical Mentorship</div>
+            <div class="service-chevron">▾</div>
+          </div>
+          <div class="service-body">
+            <div class="service-body-inner">
+              <div class="process-col">
+                <div class="process-col-title">How I Mentor</div>
+                <div class="process-steps">
+                  <div class="process-step"><span class="step-idx">01</span><span class="step-text">Diagnose where the team is — skills gap, process gap, or confidence gap</span></div>
+                  <div class="process-step"><span class="step-idx">02</span><span class="step-text">Pair on real work — not toy examples. Actual production problems</span></div>
+                  <div class="process-step"><span class="step-idx">03</span><span class="step-text">Teach the why, not just the how — patterns that transfer across projects</span></div>
+                  <div class="process-step"><span class="step-idx">04</span><span class="step-text">Build feedback loops — code review culture, architecture reviews</span></div>
+                  <div class="process-step"><span class="step-idx">05</span><span class="step-text">Exit when the team can do it without me — that's the goal</span></div>
+                </div>
+              </div>
+              <div class="process-col">
+                <div class="process-col-title">What You Get</div>
+                <div class="process-steps">
+                  <div class="process-step"><span class="step-idx">→</span><span class="step-text">Engineers who think in systems, not just features</span></div>
+                  <div class="process-step"><span class="step-idx">→</span><span class="step-text">Team culture that multiplies knowledge instead of hoarding it</span></div>
+                  <div class="process-step"><span class="step-idx">→</span><span class="step-text">Structured game dev / coding curriculum if needed</span></div>
+                </div>
+                <div class="rapid-tags" style="margin-top:1rem;">
+                  <span class="rapid-tag" style="border-color:rgba(255,210,60,0.3);color:rgb(255,220,100)">1-on-1</span>
+                  <span class="rapid-tag" style="border-color:rgba(255,210,60,0.3);color:rgb(255,220,100)">Team Workshops</span>
+                  <span class="rapid-tag" style="border-color:rgba(255,210,60,0.3);color:rgb(255,220,100)">Code Review</span>
+                  <span class="rapid-tag" style="border-color:rgba(255,210,60,0.3);color:rgb(255,220,100)">Game Dev</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                    // Charge up
-                    tl.add({
-                        targets: rings,
-                        scale: [1, 10],
-                        borderColor: ['#00ffe7', '#ff00cc'],
-                        duration: 500,
-                        delay: anime.stagger(500)
-                    })
-                        // Particle burst here 🚀
-                        .add({
-                            duration: 50,
-                            complete: spawnParticleBurst
-                        })
-                        // Expand rings outward
-                        .add({
-                            targets: rings,
-                            scale: [100, 15000],
-                            opacity: [0.8, 0],
-                            easing: 'easeOutCubic',
-                            duration: 1000,
-                            delay: anime.stagger(100)
-                        })
-                        // Fade label + gate
-                        .add({
-                            targets: [label, gate],
-                            opacity: [1, 0],
-                            filter: ['blur(0px)', 'blur(12px)'],
-                            duration: 1000,
-                            complete: () => {
-                                gate.remove();
-                                unlockScroll();
-                            }
-                        });
-                } else {
-                    gate.remove();
-                    unlockScroll();
-                }
-            }
+      </div>
+    </div><!-- /structured panel -->
 
+    <!-- RAPID PROTOTYPE MODE -->
+    <div class="mode-panel" id="panel-rapid">
+      <div style="font-family:'Space Mono',monospace;font-size:0.58rem;color:rgba(255,180,60,0.7);letter-spacing:0.1em;line-height:1.9;margin-bottom:2rem;border-left:2px solid rgba(255,180,60,0.3);padding-left:1rem;">
+        Not every problem needs a six-week architecture sprint.<br/>
+        Sometimes the best move is: <strong style="color:rgb(255,200,80)">build it in a weekend, learn what's real, then decide.</strong><br/>
+        I run rapid prototypes to validate ideas fast — especially with new tech I want to understand deeply.
+      </div>
+      <div class="rapid-panel">
 
-            // Desktop wheel
-            function onWheel(e) {
-                if (opened) return;
-                e.preventDefault();            // block actual scroll while locked
-                if (ready && e.deltaY > 0) {   // only open on downward scroll
-                    tryOpenGate('wheel');
-                }
-            }
+        <div class="rapid-card reveal">
+          <div class="rapid-card-label">⚡ RAPID · AI INTEGRATION</div>
+          <div class="rapid-card-title">AI-Powered Features</div>
+          <div class="rapid-card-desc">Spinning up LLM integrations, vision models, or generative pipelines to test feasibility — before committing to a full product architecture. I explore AI not just as a tool user but as someone who wants to understand the stack underneath.</div>
+          <div class="rapid-tags" style="margin-top:1rem;">
+            <span class="rapid-tag">OpenAI API</span>
+            <span class="rapid-tag">LangChain</span>
+            <span class="rapid-tag">Hugging Face</span>
+            <span class="rapid-tag">Local LLMs</span>
+          </div>
+        </div>
 
-            // Keyboard (space, PgDn, ArrowDown)
-            function onKey(e) {
-                if (opened) return;
-                const keys = [' ', 'Spacebar', 'PageDown', 'ArrowDown'];
-                if (keys.includes(e.key)) {
-                    e.preventDefault();
-                    if (ready) tryOpenGate('key');
-                }
-            }
+        <div class="rapid-card reveal">
+          <div class="rapid-card-label">⚡ RAPID · XR PROOF OF CONCEPT</div>
+          <div class="rapid-card-title">XR Concept Demos</div>
+          <div class="rapid-card-desc">Got an XR idea but not sure it's viable? I can put a working spatial prototype in front of users in days — not months. Fast enough to validate before a single hire or budget line is committed.</div>
+          <div class="rapid-tags" style="margin-top:1rem;">
+            <span class="rapid-tag" style="border-color:rgba(180,80,255,0.3);color:rgb(200,130,255)">Unity</span>
+            <span class="rapid-tag" style="border-color:rgba(180,80,255,0.3);color:rgb(200,130,255)">Meta SDK</span>
+            <span class="rapid-tag" style="border-color:rgba(180,80,255,0.3);color:rgb(200,130,255)">WebXR</span>
+          </div>
+        </div>
 
-            // Touch (swipe up)
-            function onTouchStart(e) {
-                touchStartY = e.touches ? e.touches[0].clientY : null;
-            }
-            function onTouchMove(e) {
-                if (opened) return;
-                if (touchStartY == null) return;
-                const dy = (e.touches ? e.touches[0].clientY : 0) - touchStartY;
-                if (dy < -12) { // swipe up
-                    e.preventDefault();
-                    if (ready) tryOpenGate('touch');
-                } else {
-                    e.preventDefault(); // keep page from moving while locked
-                }
-            }
+        <div class="rapid-card reveal">
+          <div class="rapid-card-label">⚡ RAPID · NEW TECH EXPLORATION</div>
+          <div class="rapid-card-title">Tech Experiments</div>
+          <div class="rapid-card-desc">When a new framework, engine update, or platform drops — I build something real with it. Not tutorials. Actual problems. This is how I stay current and how I know what advice to give teams considering adoption.</div>
+          <div class="rapid-tags" style="margin-top:1rem;">
+            <span class="rapid-tag">Emerging APIs</span>
+            <span class="rapid-tag">Beta SDKs</span>
+            <span class="rapid-tag">Edge Cases</span>
+          </div>
+        </div>
 
-            // Bind while gate is up
-            window.addEventListener('wheel', onWheel, { passive: false });
-            window.addEventListener('keydown', onKey, { passive: false });
-            window.addEventListener('touchstart', onTouchStart, { passive: false });
-            window.addEventListener('touchmove', onTouchMove, { passive: false });
+        <div class="rapid-card reveal">
+          <div class="rapid-card-label">⚡ RAPID · BACKEND SPIKE</div>
+          <div class="rapid-card-title">Backend Spikes</div>
+          <div class="rapid-card-desc">Need to know if a real-time multiplayer feature, a data pipeline, or a cloud integration is actually feasible at your scale? I spike it in isolation — no assumptions, real numbers — so decisions are made on evidence.</div>
+          <div class="rapid-tags" style="margin-top:1rem;">
+            <span class="rapid-tag" style="border-color:rgba(60,255,140,0.3);color:rgb(100,255,170)">WebSockets</span>
+            <span class="rapid-tag" style="border-color:rgba(60,255,140,0.3);color:rgb(100,255,170)">Redis</span>
+            <span class="rapid-tag" style="border-color:rgba(60,255,140,0.3);color:rgb(100,255,170)">Load Testing</span>
+          </div>
+        </div>
 
-            // Safety: if something blocks readiness too long, allow opening after 6s
-            setTimeout(() => { ready = true; }, 6000);
-        })();
-    </script>
+        <div class="rapid-card reveal">
+          <div class="rapid-card-label">⚡ RAPID · GAME PROTOTYPE</div>
+          <div class="rapid-card-title">Game Mechanic Prototypes</div>
+          <div class="rapid-card-desc">A mechanic isn't real until it's playable. I prototype game ideas fast — the loop, the feel, the edge cases — and iterate until it's worth building properly. Jam-style speed, production-grade thinking.</div>
+          <div class="rapid-tags" style="margin-top:1rem;">
+            <span class="rapid-tag" style="border-color:rgba(180,80,255,0.3);color:rgb(200,130,255)">Unity</span>
+            <span class="rapid-tag" style="border-color:rgba(180,80,255,0.3);color:rgb(200,130,255)">Godot</span>
+            <span class="rapid-tag" style="border-color:rgba(180,80,255,0.3);color:rgb(200,130,255)">Game Jam</span>
+          </div>
+        </div>
 
+        <div class="rapid-card reveal">
+          <div class="rapid-card-label">⚡ RAPID · AI + XR</div>
+          <div class="rapid-card-title">AI Inside XR</div>
+          <div class="rapid-card-desc">Combining LLMs, computer vision, or generative models with spatial computing. NPC behavior, spatial understanding, real-time inference inside a headset. This is the frontier I enjoy the most.</div>
+          <div class="rapid-tags" style="margin-top:1rem;">
+            <span class="rapid-tag">Vision Models</span>
+            <span class="rapid-tag">Spatial AI</span>
+            <span class="rapid-tag">NPC AI</span>
+            <span class="rapid-tag">Edge Inference</span>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /rapid panel -->
+
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section class="capabilities-section" id="systems">
+  <div class="capabilities-container">
+    <div class="section-label reveal">
+      <div class="line"></div>
+      <span>Active Core Processes</span>
+    </div>
+    <h2 class="section-title reveal">System Capabilities</h2>
+    <div class="caps-grid">
+      <div class="cap-card reveal">
+        <div class="cap-proc">PROC_ID: XR_01</div>
+        <div class="cap-icon-wrap"><span class="material-symbols-outlined">view_in_ar</span></div>
+        <div class="cap-title">XR Systems Engineering</div>
+        <div class="cap-desc">Architecting complex AR/VR environments with high-fidelity interaction models and performance-first logic.</div>
+        <div class="cap-footer">
+          <div class="cap-bars"><span></span><span></span><span></span></div>
+          <div class="cap-state">STATE: OPERATIONAL</div>
+        </div>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-proc">PROC_ID: RT_02</div>
+        <div class="cap-icon-wrap"><span class="material-symbols-outlined">precision_manufacturing</span></div>
+        <div class="cap-title">Real-time Simulation</div>
+        <div class="cap-desc">Physics-accurate environments and robotic control simulations using high-performance game engine kernels.</div>
+        <div class="cap-footer">
+          <div class="cap-bars"><span></span><span></span><span></span></div>
+          <div class="cap-state">STATE: COMPUTING</div>
+        </div>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-proc">PROC_ID: BE_03</div>
+        <div class="cap-icon-wrap"><span class="material-symbols-outlined">database</span></div>
+        <div class="cap-title">Scalable Backend</div>
+        <div class="cap-desc">Engineered for global workloads. High-concurrency cloud architecture with real-time data orchestration.</div>
+        <div class="cap-footer">
+          <div class="cap-bars"><span></span><span></span><span></span></div>
+          <div class="cap-state">STATE: LOAD_BALANCING</div>
+        </div>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-proc">PROC_ID: MN_04</div>
+        <div class="cap-icon-wrap"><span class="material-symbols-outlined">school</span></div>
+        <div class="cap-title">Technical Mentorship</div>
+        <div class="cap-desc">Building high-performance engineering teams. Translating complex architecture into learnable systems.</div>
+        <div class="cap-footer">
+          <div class="cap-bars"><span></span><span></span><span></span></div>
+          <div class="cap-state">STATE: KNOWLEDGE_SYNC</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="protocols">
+  <div class="contact-container">
+
+    <div class="contact-tag reveal">Initiate_Contact_Protocol</div>
+    <h2 class="contact-title reveal">Let's build something<br/>worth <span class="accent">shipping</span>.</h2>
+
+    <p class="contact-sub reveal">Whether it's a system that needs to scale, a prototype that needs to move fast, or a team that needs to grow — I'm open to the right conversation.</p>
+
+    <div class="contact-tags reveal">
+      <div class="contact-tag-item">Enterprise Collaboration</div>
+      <div class="contact-tag-item">Technical Consulting</div>
+      <div class="contact-tag-item">Freelance Dev</div>
+      <div class="contact-tag-item">Mentorship</div>
+    </div>
+
+    <!-- CTA CARDS -->
+    <div class="cta-cards reveal">
+
+      <!-- Email CTA -->
+      <a href="/cdn-cgi/l/email-protection#4f2e3d3620612b2e222e3d7f7e0f28222e2623612c2022" class="cta-card cta-email">
+        <div class="cta-card-glow"></div>
+        <div class="cta-card-inner">
+          <div class="cta-icon-wrap">
+            <span class="material-symbols-outlined">mail</span>
+          </div>
+          <div class="cta-text">
+            <div class="cta-channel">Direct Channel</div>
+            <div class="cta-action">Send an Email</div>
+            <div class="cta-addr"><span class="__cf_email__" data-cfemail="a9c8dbd0c687cdc8c4c8db9998e9cec4c8c0c587cac6c4">[email&#160;protected]</span></div>
+          </div>
+          <div class="cta-arrow">
+            <span class="material-symbols-outlined">arrow_outward</span>
+          </div>
+        </div>
+        <div class="cta-status">
+          <span class="cta-dot"></span>
+          <span>RESPONSE WITHIN 24H</span>
+        </div>
+      </a>
+
+      <!-- LinkedIn CTA -->
+      <a href="https://www.linkedin.com/in/aryo-damar-prasetia" target="_blank" rel="noopener" class="cta-card cta-linkedin">
+        <div class="cta-card-glow"></div>
+        <div class="cta-card-inner">
+          <div class="cta-icon-wrap">
+            <!-- LinkedIn SVG icon -->
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </div>
+          <div class="cta-text">
+            <div class="cta-channel">Professional Network</div>
+            <div class="cta-action">Connect on LinkedIn</div>
+            <div class="cta-addr">aryo-damar-prasetia</div>
+          </div>
+          <div class="cta-arrow">
+            <span class="material-symbols-outlined">arrow_outward</span>
+          </div>
+        </div>
+        <div class="cta-status">
+          <span class="cta-dot" style="background:rgb(10,102,194);box-shadow:0 0 6px rgba(10,102,194,0.8)"></span>
+          <span>OPEN TO OPPORTUNITIES</span>
+        </div>
+      </a>
+
+    </div><!-- /cta-cards -->
+
+    <!-- Divider note -->
+    <div class="contact-note reveal">
+      <div class="contact-note-line"></div>
+      <span>Not sure what you need yet? Either channel works — I'm good at figuring out the right scope together.</span>
+      <div class="contact-note-line"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <div class="footer-status">
+      <span class="dot"></span>
+      <span>System Online</span>
+    </div>
+    <div class="footer-links">
+      <a href="/cdn-cgi/l/email-protection#5637242f397832373b3724666716313b373f3a7835393b">Email</a>
+      <a href="https://www.linkedin.com/in/aryo-damar-prasetia" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+  <div class="footer-right">
+    <div class="footer-copy">© 2025 V-Architect Core Systems</div>
+    <div class="footer-sig">Engineered by Aryo D. Prasetia // Jakarta</div>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="js/canvas.js"></script>
+<script src="js/main.js"></script>
 </body>
-
 </html>
